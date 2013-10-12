@@ -1,0 +1,125 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{pgfplotstable}
+\usepackage{pgfplots}
+\usepackage{filecontents}
+\usepackage{amsmath}
+\usepackage{float}
+
+
+
+\title{
+	\textbf{Autonomous Agents Assignment 3}
+}
+
+\author{Tobias Stahl \\ 10528199 \and Spyros Michaelides \\ 10523316 \and Ioannis Giounous Aivalis \\ 10524851 \and Francesco Stablum \\ 6200982}
+
+
+
+
+\begin{document}
+
+\maketitle
+
+
+\section{Introduction}
+In this assignments, an already implemented environment setting is going to initially be updated in order to test . The previously randomly acting 
+
+
+
+
+
+
+
+In this report we are going to use an already implemented Predator versus Prey grid to illustrate some of the differences and features of learning algorithms. In this scenario the Predator agent does not have any prior knowledge towards the environment and will make use of model-free learning, in order to reach its goal which is to catch the Prey. This will be attempted using Temporal Difference learning methods (TD), a combination of Monte Carlo and dynamic programming. TD learning methods can learn directly from experience, rather than having to rely on a model of the environment. TD methods can update action state values estimates based on other learned estimates, without having to wait for the final outcome. Finally, once TD algorithms have been implemented, they will be compared to Monte Carlo methods, whose form can resemble to some extent TD learning because they also learn by sampling the environment according to some policy.
+
+
+
+
+
+
+%--A general framework for explaining your results/experiments is to follow these points : 
+
+%HYPOTHESIS
+%--1) why? "in order to test..." (questions, and preferably hypotheses with explanation) --> Hypothesis
+%--2) is there anything to mention about the implementation/machinery the reader should know? (e.g. "these experiments were performed on a [insert machine specs]" when presenting runtimes) - 
+
+%RESULTS
+
+%Interpretation
+%--3) what does it show (and is that what you expected, and why)
+
+%Findings
+%--4) take home message (what do you want the reader to remember, e.g. "Therefore, by reducing the state space, we have gained several orders of magnitude in runtime.")
+
+
+\section{New Environment}
+%intro, summary
+
+
+\subsection{Experiment}
+
+
+
+\subsubsection{Hypothesis}
+
+
+\subsection{Results}
+%Interpretation
+
+
+%Findings
+
+
+
+
+
+
+
+\section{minimax-Q}
+%intro, summary
+\subsection{Summary}
+The following summary introduces briefly the consequences of using the Markov game framework in place of MDP's in reinforcement learning for two-player zero-sum games.
+Since in Markov games the best choice of action depends on the opponent there is no undominated policy, so the problem could be resolved using components from game-theory. Adopting this to the two agent problem, the solution could be approached by evaluating each policy with respect to the scenario where the opponent acts in the worst possible way for the agent, i.e. the opponent tries to minimize the reward function of the agent. Based on the opponent's strategy, the agent will attempt to select the policy that maximizes the discounted reward. Taking into consideration the the action of the opponent as $o \in O$, the value of a state in a Markov game can be redefined as the expected reward for the optimal policy starting from a state $s$, and the quality $Q(s,a,o)$ as the expected reward for taking action $a$ when the opponent chooses $o$, and continuing optimally afterwards. \\
+Minimax-Q works in the same way as Q-learning, with the difference that it takes as an action one that minimizes the possible loss for a worst case scenario under the opponent's action o instead of just the maximum approximated action value (without considering the opponents action).
+Littman in his paper implements an experiment with two agents 'playing football' on a 4x5 grid, where the aim is for the agent with the ball to move into the correct goal post. Littman implements a series of experiments to compare the performance of minimax-Q in comparison to Q-learning, using different training methods (learning against a random opponent or the algorithm itself.) The results are that minimax-Q allows the agent to converge to a risk averse strategy, due to the fact that it constantly takes into consideration the worst possible action the opponent could take. 
+
+
+\subsection{Experiment}
+
+
+
+\subsubsection{Hypothesis}
+
+
+\subsection{Results}
+%Interpretation
+
+
+%Findings
+
+
+
+
+
+\section{Discussion}
+
+
+
+\section{Conclusion}
+
+
+\begin{thebibliography}{9}
+
+\bibitem{sutton}
+  Richard S. Sutton and Andrew G. Barto ,
+  \emph{Reinforcement Learning: An Introduction}.
+  The MIT Press, Cambridge, Massachusetts
+
+\end{thebibliography}
+
+\end{document}
