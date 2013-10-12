@@ -52,7 +52,10 @@ Finally other learning algorithms for Markov games will be implemented and teste
 
 
 \section{New Environment}
-The previously implemented environment included a prey which acted randomly with an option to either move randomly between 4 different directions with probability   of 5\%, or to stay put, by not moving, with a probability of 80\%. The prey will now be also applied the algorithms implemented in order to make it
+The previously implemented environment included a prey which acted randomly with options to either move between 4 different directions with probability of 5\%, or to stay put, by not moving, with a probability of 80\%. The predator was the only agent in the environment and always moved prior to the prey, whilst the prey was never allowed to move into the coordinates of where the predator stands (since that would signify the termination of the chase).\\
+In the newly implemented version, both the prey and the predator(s) will move at the same time, meaning that if the predator and prey move onto the same coordinates, the predator will instantly get a reward of +10 for and the prey will receive a reward of -10 for being caught resulting in a terminated episode. Any other transition would result in a reward of 0 for the agents.
+The prey will now be also be an agent with slightly different movement options, with an 80\% chance in moving with any of the  four given directions, whilst also having a 20\% chance of tripping, in which case the prey would stay put. The prey being an agent now too will have the algorithms applied in order to make it 'intelligent', and hence harder to catch by the predator(s). 
+In the case where more than one predator is in the environment, there is the possibility that the predators will move into each other. In doing so, the predators will each receive a reward of -10 and the episode will also end.
 %intro, summary
 
 
