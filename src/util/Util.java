@@ -17,6 +17,11 @@ public class Util {
     public static double tau = 4;             /* Softmax action selection temperature */
 
     public final static double MAX_ROUNDS = 10000;
+	public static final int NUMBER_OF_TEST_RUNS = 100;
+
+	public static double INITIAL_Q_VALUE = 15.0;
+
+	public static int PREDATOR_COUNT = 2;
 
     public ArrayList<State> getNeighbors(State s) {
         return null; // TODO

@@ -9,7 +9,6 @@ import state.State;
 import java.util.HashMap;
 
 public abstract class Policy {
-    protected HashMap<StateAction, Double> q;
     protected HashMap<StateAction, Double> stateActionProbability;
     protected HashMap<State, Action.action> policy;
 	protected HashMap<State, PossibleActions> stateActionMapping; // necessary?
