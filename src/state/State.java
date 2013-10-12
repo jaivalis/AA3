@@ -41,11 +41,11 @@ public abstract class State {
             case 1:
                 return false;
             case 2:
-                return this.predC.get(0) == this.predC.get(1);
+                return this.predC.get(0).equals(this.predC.get(1));
             case 3:
-                return (this.predC.get(0) == this.predC.get(1) ||
-                        this.predC.get(1) == this.predC.get(2) ||
-                        this.predC.get(0) == this.predC.get(2));
+                return (this.predC.get(0).equals(this.predC.get(1)) ||
+                        this.predC.get(1).equals(this.predC.get(2)) ||
+                        this.predC.get(0).equals(this.predC.get(2)));
             default:
                 Exception ex = new Exception();
                 ex.printStackTrace();
