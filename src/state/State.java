@@ -36,7 +36,6 @@ public abstract class State {
      * @return true if two predC share coordinates, false otherwise.
      */
     private boolean predatorsCollide() {
-        if (this.predC.size() == 1) { return false; }
         switch (this.predC.size()) {
             case 1:
                 return false;
@@ -58,7 +57,7 @@ public abstract class State {
 	@Override
 	public String toString() {
 		String ret = "";
-		ret += "Value = " + this.stateValue + "Prey : " + this.preyC;
+		ret += "Value = " + this.stateValue + " Prey : " + this.preyC;
         for (Coordinates predator : this.predC) { ret +=  " Predator : " + predator; }
 		return ret;
 	}
@@ -103,10 +102,10 @@ public abstract class State {
         for (Coordinates p : predC) { // move all predators in the opposite direction.
             p.set(p.getShifted(preyAction.getOpposite()));
         }
-        int index = 0;
         // move predators according to their actions.
+        int index = 0;
         for(Coordinates p : predC) {
-            p.set(p.getShifted(ja.predatorActions.get(index)));
+            p.set(p.getShifted(ja.predatorActions.get(index++)));
         }
     }
 }
