@@ -1,6 +1,7 @@
 package agent;
 
 import policy.Policy;
+import policy.RandomPredatorPolicy;
 import util.Coordinates;
 
 public class Predator extends Agent {
@@ -19,13 +20,13 @@ public class Predator extends Agent {
                 this.coordinates = new Coordinates(0, 0);
                 break;
             case 1:
-                this.coordinates = new Coordinates(11, 0);
+                this.coordinates = new Coordinates(10, 0);
                 break;
             case 2:
-                this.coordinates = new Coordinates(0, 11);
+                this.coordinates = new Coordinates(0, 10);
                 break;
         }
-        this.policy = null;
+        this.policy = new RandomPredatorPolicy();
     }
 	
 	/** copy constructor */

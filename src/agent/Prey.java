@@ -1,12 +1,19 @@
 package agent;
 
+import policy.RandomPreyPolicy;
 import state.State;
 import util.Coordinates;
 
 
 public class Prey extends Agent {
 
-    public Prey() { this.coordinates = new Coordinates(5, 5); }
+    /**
+     * Creates a prey set to location 5,5 with a randomPreyPolicy
+     */
+    public Prey() {
+        this.policy = new RandomPreyPolicy();
+        this.coordinates = new Coordinates(5, 5);
+    }
 
 	public Prey(Coordinates c) { this.coordinates = c; }
 	

@@ -18,6 +18,7 @@ public class ReducedState extends State {
      * Random state constructor
      */
     public ReducedState(int predators) {
+        this.predC = new ArrayList<>();
         this.preyC = new Coordinates(5, 5);
         for (int i = 0; i < predators; i++) {
             this.predC.add(new Coordinates());

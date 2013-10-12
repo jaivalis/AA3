@@ -22,6 +22,7 @@ public class JointAction {
         this.preyAction = p.getAction(s);
 
         int i = 0;
+        predatorActions = new HashMap<>();
         for (Predator pred : predators) {
             predatorActions.put(i++, pred.getAction(s));
         }

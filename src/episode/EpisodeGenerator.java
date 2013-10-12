@@ -40,7 +40,7 @@ public class EpisodeGenerator {
             s = s_prime;
 
             s_prime = s;
-            s_prime.nextState(ja); // s <- s.getSuccessor()
+            s_prime.nextState(ja);  // s <- s.getSuccessor()
 
             double preyReward = s_prime.getPreyReward();
             double predReward = s_prime.getPredatorReward();
