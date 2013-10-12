@@ -107,6 +107,7 @@ public abstract class State {
         // move predators according to their actions.
         for(Coordinates p : predC) {
             p.set(p.getShifted(ja.predatorActions.get(index)));
+            index++;
         }
     }
 }

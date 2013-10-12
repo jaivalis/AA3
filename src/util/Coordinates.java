@@ -19,6 +19,7 @@ public class Coordinates {
 	
 	public Coordinates(Coordinates c) { this.x = c.x; this.y = c.y; }
 
+	// FIXME: should not be mutable
     public void set(Coordinates c) { this.x = c.x; this.y = c.y; }
 
 	public int getX() { return x; }	
