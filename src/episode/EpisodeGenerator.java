@@ -4,7 +4,6 @@ import action.JointAction;
 import agent.Predator;
 import agent.Prey;
 import state.State;
-import statespace.StateSpace;
 
 import java.util.ArrayList;
 
@@ -24,12 +23,11 @@ public class EpisodeGenerator {
 
     /**
      * Creates an instance of episode using a given policy for the Predator.
-     * @param stateSpace
      * @param initialState
      * @param gamma
      * @return
      */
-	public Episode generate(StateSpace stateSpace, State initialState, double gamma) {
+	public Episode generate(State initialState, double gamma) {
     	Episode episode = new Episode(prey, predators);
 
         State s = initialState;
@@ -40,7 +38,10 @@ public class EpisodeGenerator {
         	steps++;
             JointAction ja =  new JointAction(s, this.prey, this.predators);
             s = s_prime;
-            s_prime = stateSpace.getSuccessorState(s, ja);
+
+            s_prime = s;
+            s_prime.nextState(ja); // s <- s.getSuccessor()
+
             double preyReward = s_prime.getPreyReward();
             double predReward = s_prime.getPredatorReward();
             episode.addStep(s, ja, preyReward, predReward, s_prime);

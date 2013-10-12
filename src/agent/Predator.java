@@ -1,12 +1,11 @@
 package agent;
 
-import util.Coordinates;
 import policy.Policy;
-import statespace.StateSpace;
+import util.Coordinates;
 
 public class Predator extends Agent {
 	
-	public Predator(Coordinates c, StateSpace ss) {
+	public Predator(Coordinates c) {
 		this.coordinates = c;
 	}
 

@@ -1,4 +1,5 @@
 package policy;
 
-public class QLearningPolicy {
+public class QLearningPolicy extends Policy {
+
 }

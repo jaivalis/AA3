@@ -1,15 +1,14 @@
 package agent;
 
-import util.Coordinates;
 import state.State;
-import statespace.StateSpace;
+import util.Coordinates;
 
 
 public class Prey extends Agent {
 
     public Prey() { this.coordinates = new Coordinates(5, 5); }
 
-	public Prey(Coordinates c, StateSpace stateSpace) { this.coordinates = c; }
+	public Prey(Coordinates c) { this.coordinates = c; }
 	
 	/** copy constructor */
 	public Prey(Prey p) { this.coordinates = p.coordinates; }
