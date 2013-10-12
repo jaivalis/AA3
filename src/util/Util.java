@@ -18,10 +18,6 @@ public class Util {
 
     public final static double MAX_ROUNDS = 10000;
 
-    public State getRandomState() {
-        return null; // TODO
-    }
-
     public ArrayList<State> getNeighbors(State s) {
         return null; // TODO
     }

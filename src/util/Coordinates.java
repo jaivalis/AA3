@@ -2,9 +2,19 @@ package util;
 
 import action.Action;
 
+import java.util.Random;
+
 public class Coordinates {
 	private int x, y;
-		
+
+    /**
+     * Creates a Coordinates instance with random x, y values.
+     */
+    public Coordinates() {
+        Random r = new Random();
+        this.x = r.nextInt(Util.DIM);
+        this.y = r.nextInt(Util.DIM);
+    }
 	public Coordinates(int x, int y) { this.x = x;	this.y = y; }
 	
 	public Coordinates(Coordinates c) { this.x = c.x; this.y = c.y; }

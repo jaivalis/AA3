@@ -13,4 +13,14 @@ public class ReducedState extends State {
         this.preyC = new Coordinates(5, 5);
         this.predC = pred;
     }
+
+    /**
+     * Random state constructor
+     */
+    public ReducedState(int predators) {
+        this.preyC = new Coordinates(5, 5);
+        for (int i = 0; i < predators; i++) {
+            this.predC.add(new Coordinates());
+        }
+    }
 }
