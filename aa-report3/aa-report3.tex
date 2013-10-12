@@ -27,15 +27,9 @@
 
 
 \section{Introduction}
-In this assignments, an already implemented environment setting is going to initially be updated in order to test . The previously randomly acting 
-
-
-
-
-
-
-
-In this report we are going to use an already implemented Predator versus Prey grid to illustrate some of the differences and features of learning algorithms. In this scenario the Predator agent does not have any prior knowledge towards the environment and will make use of model-free learning, in order to reach its goal which is to catch the Prey. This will be attempted using Temporal Difference learning methods (TD), a combination of Monte Carlo and dynamic programming. TD learning methods can learn directly from experience, rather than having to rely on a model of the environment. TD methods can update action state values estimates based on other learned estimates, without having to wait for the final outcome. Finally, once TD algorithms have been implemented, they will be compared to Monte Carlo methods, whose form can resemble to some extent TD learning because they also learn by sampling the environment according to some policy.
+In this assignment, an already implemented environment setting is going to initially be updated in order to test the behaviour of the algorithms previously implemented, in situations with more than one predator, trying to catch in this case an an intelligent prey. This new environment setting will be able to host up to 3 predators, with the fourth agent being the intelligent prey. Random policies will initially be used to check if the environment works correctly..
+Following the experimentation with this new environment, a different algorithm named minimax-Q will be implemented, using elements from Q-learning, and the minimax decision rule in game theory.
+Finally other learning algorithms for Markov games will be implemented and tested, in order to analyse their performance.
 
 
 
@@ -58,6 +52,7 @@ In this report we are going to use an already implemented Predator versus Prey g
 
 
 \section{New Environment}
+The previously implemented environment included a prey which acted randomly with an option to either move randomly between 4 different directions with probability   of 5\%, or to stay put, by not moving, with a probability of 80\%. The prey will now be also applied the algorithms implemented in order to make it
 %intro, summary
 
 
