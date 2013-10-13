@@ -1,6 +1,7 @@
 package action;
 
 import action.Action.action;
+import agent.AgentsCollection;
 import agent.Predator;
 import agent.Prey;
 import state.State;
@@ -18,12 +19,12 @@ public class JointAction {
      * @param p Prey instance.
      * @param predators Contains the predators.
      */
-    public JointAction(State s, Prey p, ArrayList<Predator> predators) {
-        this.preyAction = p.getAction(s);
+    public JointAction(State s, AgentsCollection agents) {
+    	this.preyAction = agents.preys.get(0).getAction(s);
 
         int i = 0;
         predatorActions = new HashMap<>();
-        for (Predator pred : predators) {
+        for (Predator pred : agents.predators) {
             predatorActions.put(i++, pred.getAction(s));
         }
     }

@@ -4,6 +4,11 @@ import action.Action;
 
 import java.util.Random;
 
+/**
+ * represents a bi-dimensional coordinate.
+ * x and y are set at construction time and cannot be changed later.
+ * @author stablum
+ */
 public class Coordinates {
 	private int x, y;
 
@@ -18,9 +23,6 @@ public class Coordinates {
 	public Coordinates(int x, int y) { this.x = x;	this.y = y; }
 	
 	public Coordinates(Coordinates c) { this.x = c.x; this.y = c.y; }
-
-	// FIXME: should not be mutable
-    public void set(Coordinates c) { this.x = c.x; this.y = c.y; }
 
 	public int getX() { return x; }	
 	public int getY() { return y; }
@@ -64,7 +66,7 @@ public class Coordinates {
 	/**
 	 * Returns the new coordinates after taking action a 
 	 */
-	public Coordinates getShifted(Action.action a) {
+	public Coordinates createShifted(Action.action a) {
 		Coordinates dest = null;
 		switch (a) {
 			case WAIT:

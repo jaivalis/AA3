@@ -20,7 +20,7 @@ public abstract class Agent {
 	 * Updates the coordinates according to the action taken.
 	 */
 	private void move(Action.action a) {
-        this.coordinates = this.coordinates.getShifted(a);
+        this.coordinates = this.coordinates.createShifted(a);
     }
 	/**
 	 * Move the Actor according to an action picked from the policy of the Actor.

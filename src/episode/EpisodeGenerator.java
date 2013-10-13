@@ -1,6 +1,7 @@
 package episode;
 
 import action.JointAction;
+import agent.AgentsCollection;
 import agent.Predator;
 import agent.Prey;
 import state.State;
@@ -8,15 +9,13 @@ import state.State;
 import java.util.ArrayList;
 
 public class EpisodeGenerator {
-    private ArrayList<Predator> predators;
-    private Prey prey;
+    private AgentsCollection agents = new AgentsCollection();
 
     public EpisodeGenerator(int predatorCount) {
-        this.prey = new Prey();
-        this.predators = new ArrayList<>();
+        this.agents.preys.add(new Prey());
         for (int i = 0; i < predatorCount; i++) {
             Predator p = new Predator(i);
-            predators.add(p);
+            this.agents.predators.add(p);
         }
     }
 
@@ -27,7 +26,7 @@ public class EpisodeGenerator {
      * @return
      */
 	public Episode generate(State initialState, double gamma) {
-    	Episode episode = new Episode(prey, predators);
+    	Episode episode = new Episode(this.agents);
 
         State s = initialState;
         State s_prime = initialState;
@@ -36,7 +35,7 @@ public class EpisodeGenerator {
         System.out.println("step #"+steps + " " + s);
         do {
         	steps++;
-            JointAction ja =  new JointAction(s, this.prey, this.predators);
+            JointAction ja = new JointAction(s, this.prey, this.predators);
             s = s_prime;
 
             s_prime = s;

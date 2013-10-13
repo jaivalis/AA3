@@ -6,7 +6,7 @@ import util.Coordinates;
 
 import java.util.ArrayList;
 
-public abstract class State {
+public abstract class State implements Cloneable {
     protected Coordinates preyC;
     protected ArrayList<Coordinates> predC;
     protected double stateValue;	// Corresponds to value V (for the policy evaluation algorithm).
@@ -99,14 +99,29 @@ public abstract class State {
     public void nextState(JointAction ja) {
         // 'move' prey
         Action.action preyAction = ja.preyAction;
-        for (Coordinates p : predC) { // move all predators in the opposite direction.
-            p.set(p.getShifted(preyAction.getOpposite()));
+        for (int i = 0; i < this.predC.size(); i++) { // move all predators in the opposite direction.
+            Coordinates currCoord = this.predC.get(0);
+			Coordinates newCoord = currCoord.createShifted(preyAction.getOpposite());
+			this.predC.set(i, newCoord);
         }
+        
         // move predators according to their actions.
         int index = 0;
-        for(Coordinates p : predC) {
-            p.set(p.getShifted(ja.predatorActions.get(index)));
-            index++;
+        for (int i = 0; i < this.predC.size(); i++) { // move all predators in the opposite direction.
+            Coordinates currCoord = this.predC.get(i);
+			Coordinates newCoord = currCoord.createShifted(ja.predatorActions.get(i));
+			this.predC.set(i, newCoord);
         }
+    }
+    
+    public State clone() {
+    	try {
+			return (State) super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(0);
+			return null;
+		}
     }
 }

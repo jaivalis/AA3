@@ -1,6 +1,7 @@
 package episode;
 
 import action.JointAction;
+import agent.AgentsCollection;
 import agent.Predator;
 import agent.Prey;
 import state.State;
@@ -11,12 +12,10 @@ import java.util.Iterator;
 
 public class Episode implements Iterable<EpisodeStep> {
 	private ArrayList<EpisodeStep> steps = new ArrayList<>();
-    ArrayList<Predator> predators;
-    Prey prey;
+	AgentsCollection agents = new AgentsCollection();
 
-    public Episode(Prey prey, ArrayList<Predator> predators) {
-        this.prey = prey;
-        this.predators = predators;
+    public Episode(AgentsCollection agents) {
+        this.agents = agents;
     }
 
 	public void addStep(State s, JointAction ja, double preyR, double predR, State s_prime){
