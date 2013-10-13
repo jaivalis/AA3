@@ -2,6 +2,9 @@ package state;
 
 import action.Action;
 import action.JointAction;
+import agent.Agent;
+import agent.Predator;
+import agent.Prey;
 import util.Coordinates;
 
 import java.util.ArrayList;
@@ -21,6 +24,20 @@ public abstract class State implements Cloneable {
 
     public double getPredatorReward() {
         return -this.getPreyReward();
+    }
+
+    public double getReward(Prey agent) {
+    	return this.getPreyReward();
+    }
+
+    public double getReward(Predator agent) {
+    	return this.getPredatorReward();
+    }
+    
+    public double getReward(Agent agent) {
+    	new Exception("should not get there, should call getReward(Prey) or getReward(Predator)").printStackTrace();
+    	System.exit(0);
+		return 0;
     }
 
     /**

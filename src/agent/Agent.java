@@ -3,11 +3,13 @@ package agent;
 import action.Action;
 import util.Coordinates;
 import policy.Policy;
+import policy.Q;
 import state.State;
 
 public abstract class Agent {
 	protected Coordinates coordinates;
     protected Policy policy;
+    public Q q;
 
 	public Coordinates getCoordinates() { return this.coordinates; }
 	

@@ -35,7 +35,7 @@ public class EpisodeGenerator {
         System.out.println("step #"+steps + " " + s);
         do {
         	steps++;
-            JointAction ja = new JointAction(s, this.prey, this.predators);
+            JointAction ja = new JointAction(s, this.agents);
             s = s_prime;
 
             s_prime = s;

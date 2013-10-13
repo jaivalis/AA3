@@ -21,7 +21,7 @@ public class QLearning {
      * @param gamma Decay factor.
      * @return
      */
-    public static Q run(AgentsCollection agents, double initialQ, double alpha, double gamma, int episodeCount) {
+    public void run(AgentsCollection agents, double initialQ, double alpha, double gamma, int episodeCount) {
         for (int i = 0; i < episodeCount; i++) {  // repeat for each episode
             State s = new ReducedState(Util.PREDATOR_COUNT); // initialize s randomly
             State s_prime;
@@ -33,23 +33,24 @@ public class QLearning {
             	s = (State) s.clone();
                 s_prime.nextState(ja); // make transition from s to s'
 
-                double q_sa = q.get(s, a);
-                double max_a_q = q.getMax(s_prime);
-                
-                // the reward r that is consequence of action a, in our case (prey/predator system) is always set 
-                // as the reward associated with the destination state
-                double r = s_prime.getStateReward();
-                
-                double discounted_max_a_q = gamma * max_a_q;
-                double newQ_sa = q_sa + alpha * (r + discounted_max_a_q - q_sa);
+                for(Agent agent : agents){
+                	action single_action = ja.actionsMap.get(agent);
+                	double q_sa = agent.q.get(s, single_action);
+                    double max_a_q = agent.q.getMax(s_prime);
+                    
+                    // the reward r that is consequence of action a, in our case (prey/predator system) is always set 
+                    // as the reward associated with the destination state
+                    double r = s_prime.getReward(agent);
+                    
+                    double discounted_max_a_q = gamma * max_a_q;
+                    double newQ_sa = q_sa + alpha * (r + discounted_max_a_q - q_sa);
 
-                q.set(s, a, newQ_sa); // Q(s,a) = Q(s,a) + α[r + γmax_aQ() - Q(s,a)]
-
+                    agent.q.set(s, single_action, newQ_sa); // Q(s,a) = Q(s,a) + α[r + γmax_aQ() - Q(s,a)]	
+                }
                 s = s_prime;
                 //System.out.println("a:"+a+" s':"+s_prime); //FIXME DEBUG
             } while (!s.isTerminal()); // repeat until s is terminal
         }
-        return q;
     }
 
 }
