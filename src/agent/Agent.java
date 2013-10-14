@@ -58,4 +58,8 @@ public abstract class Agent {
     public double getActionProbability(State s, Action.action a) {
         return this.policy.getActionProbability(s, a);
     }
+
+	public Q getQ() {
+		return this.q;
+	}
 }
