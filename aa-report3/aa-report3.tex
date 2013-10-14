@@ -52,26 +52,48 @@ Finally other learning algorithms for Markov games will be implemented and teste
 
 
 \section{New Environment}
-The previously implemented environment included a prey which acted randomly with options to either move between 4 different directions with probability of 5\%, or to stay put, by not moving, with a probability of 80\%. The predator was the only agent in the environment and always moved prior to the prey, whilst the prey was never allowed to move into the coordinates of where the predator stands (since that would signify the termination of the chase).\\
-In the newly implemented version, both the prey and the predator(s) will move at the same time, meaning that if the predator and prey move onto the same coordinates, the predator will instantly get a reward of +10 for and the prey will receive a reward of -10 for being caught resulting in a terminated episode. Any other transition would result in a reward of 0 for the agents.
-The prey will now be also be an agent with slightly different movement options, with an 80\% chance in moving with any of the  four given directions, whilst also having a 20\% chance of tripping, in which case the prey would stay put. The prey being an agent now too will have the algorithms applied in order to make it 'intelligent', and hence harder to catch by the predator(s). 
+\subsection{Summary}
+The previously implemented environment included a prey which acted randomly with options to either move between 4 different directions with a probability of 5\%, or to stay put, by not moving, with a probability of 80\%. The predator was the only agent in the environment and always moved prior to the prey, whilst the prey was never allowed to move into the coordinates of where the predator stands (since that would signify the termination of the chase).\\
+In the newly implemented environment, both the prey and the predator(s) will move at the same time, meaning that if the predator and prey move onto the same coordinates, the predator will instantly get a reward of +10 for and the prey will receive a reward of -10, resulting in a terminated episode. Any other transition would result in a reward of 0 for the agents.
+The prey will now be also be an agent with slightly different movement options, with an 80\% chance in moving using any of the  four given directions, whilst also having a 20\% chance of tripping, in which case the prey would stay put. The prey being an agent now too, will also have the algorithms applied in order to make it 'intelligent', and hence harder to catch by the predator(s). 
 In the case where more than one predator is in the environment, there is the possibility that the predators will move into each other. In doing so, the predators will each receive a reward of -10 and the episode will also end.
 %intro, summary
 
-
 \subsection{Experiment}
-
 
 
 \subsubsection{Hypothesis}
 
 
-\subsection{Results}
+\subsubsection{Results}
 %Interpretation
 
 
 %Findings
 
+
+
+
+
+
+\section{Independent Q-Learning}
+\subsection{Summary}
+%intro, summary
+Q-Learning is an algorithm designed to work in a Markov Decision Process (MDP), for an underlying transition model that does not change with time. The algorithm estimates the the optimal policy, without the transition model of the environment, by repeatedly interacting with the environment and trying to estimate the optimal state/action values through trial and error. Unlike MDPs, in Markov Games, the environment is extended to host a multiple number of agents, which means that the transition model depends on the joint action of the agents, and each agent receives a different reward as a result of this joint action.\\
+Q-learning could be implemented on an agent in a Markov game, by treating the all other agents as part of the environment. Theoretically, having multiple agents using Q-learning to learn, should result in a poor performance, since the transition model $p(state'|state, action_{i})$ of the agent $i$ will constantly be changing due to the policies of the other agents who are also learning simultaneously. This approach, in turn, is named 'Independent Q-learning' since each agent in the simulation will be independently learning the optimal Q-values, and hence policy, of the underlying (changing) transition model of the environment.
+
+
+\subsection{Experiment}
+
+
+\subsubsection{Hypothesis}
+
+
+\subsubsection{Results}
+%Interpretation
+
+
+%Findings
 
 
 
@@ -94,7 +116,31 @@ Littman in his paper implements an experiment with two agents 'playing football'
 \subsubsection{Hypothesis}
 
 
-\subsection{Results}
+\subsubsection{Results}
+%Interpretation
+
+
+%Findings
+
+
+
+
+
+
+
+
+\section{Other Learning Algorithms}
+
+
+
+\subsection{Experiment}
+
+
+
+\subsubsection{Hypothesis}
+
+
+\subsubsection{Results}
 %Interpretation
 
 
@@ -111,12 +157,22 @@ Littman in his paper implements an experiment with two agents 'playing football'
 \section{Conclusion}
 
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{2}
 
 \bibitem{sutton}
   Richard S. Sutton and Andrew G. Barto ,
   \emph{Reinforcement Learning: An Introduction}.
   The MIT Press, Cambridge, Massachusetts
+
+
+\bibitem{vlassi}
+  Nikos Vlassis,
+  \emph{A Concise Introduction to Multiagent Systems andDistributed Artificial Intelligence}.
+  Morgan \& Claypool, 2007
+\bibitem{littman94}
+  Michael L. Littman,
+  \emph{Markov games as a framework for multi-agent reinforcement learning}.
+  1994
 
 \end{thebibliography}
 
