@@ -13,21 +13,14 @@ public class Experiment1 {
 
     public static void main(String[] args) {
 
-        EpisodeGenerator eg = new EpisodeGenerator(Util.PREDATOR_COUNT);
-        for(int i=0; i < Util.NUMBER_OF_TEST_RUNS; i++) {
-        	// FIXME statistics and such
-        	eg.generate(new ReducedState(Util.PREDATOR_COUNT), 0.0);
-        }
-        
-        QLearning ql = new QLearning();
-        double initialQ = Util.INITIAL_Q_VALUE;
-        double alpha = 0.1;
-        double gamma = 0.5;
-        int episodeCount = 10;
-        AgentsCollection agents = new AgentsCollection();
-        agents.predators.add(new Predator(new Coordinates()));
-        agents.predators.add(new Predator(new Coordinates()));
-        agents.preys.add(new Prey());
-		ql.run(agents , initialQ, alpha, gamma, episodeCount);
+        int predatorCount = 2;
+
+        AgentsCollection agents = Builder.experiment1Config(predatorCount);
+
+        EpisodeGenerator eg = new EpisodeGenerator(agents);
+        eg.generate(new ReducedState(agents.getPredatorsCoordinates()), 0.0);
+//        for(int i=0; i < Util.NUMBER_OF_TEST_RUNS; i++) {
+//        	eg.generate(new ReducedState(Util.PREDATOR_COUNT), 0.0);
+//        }
     }
 }

@@ -1,5 +1,7 @@
 package agent;
 
+import policy.Policy;
+import policy.Q;
 import policy.RandomPreyPolicy;
 import state.State;
 import util.Coordinates;
@@ -10,15 +12,14 @@ public class Prey extends Agent {
     /**
      * Creates a prey set to location 5,5 with a randomPreyPolicy
      */
-    public Prey() {
-        this.policy = new RandomPreyPolicy();
-        this.coordinates = new Coordinates(5, 5);
+    public Prey(Coordinates c, Q q, Policy p) {
+        super(c, q, p);
     }
 
-	public Prey(Coordinates c) { this.coordinates = c; }
+//	public Prey(Coordinates c) { this.coordinates = c; }
 	
 	/** copy constructor */
-	public Prey(Prey p) { this.coordinates = p.coordinates; }
+//	public Prey(Prey p) { this.coordinates = p.coordinates; }
 
 	@Override
 	public String toString() { return "Prey (" + this.getCoordinates().getX() + ", " + this.getCoordinates().getY() + ")"; }

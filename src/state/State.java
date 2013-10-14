@@ -109,36 +109,4 @@ public abstract class State implements Cloneable {
 
     public boolean isTerminal() { return preyIsCaught() || predatorsCollide(); }
 
-    /**
-     * Alters the current state to the state that will occur after a joint action is taken.
-     * @param ja the JointAction to be taken.
-     */
-    public void nextState(JointAction ja) {
-        // 'move' prey
-        Action.action preyAction = ja.preyAction;
-        for (int i = 0; i < this.predatorsCoordinates.size(); i++) { // move all predators in the opposite direction.
-            Coordinates currCoord = this.predatorsCoordinates.get(0);
-			Coordinates newCoord = currCoord.createShifted(preyAction.getOpposite());
-			this.predatorsCoordinates.set(i, newCoord);
-        }
-        
-        // move predators according to their actions.
-        int index = 0;
-        for (int i = 0; i < this.predatorsCoordinates.size(); i++) { // move all predators in the opposite direction.
-            Coordinates currCoord = this.predatorsCoordinates.get(i);
-			Coordinates newCoord = currCoord.createShifted(ja.predatorActions.get(i));
-			this.predatorsCoordinates.set(i, newCoord);
-        }
-    }
-    
-    public State clone() {
-    	try {
-			return (State) super.clone();
-		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.exit(0);
-			return null;
-		}
-    }
 }

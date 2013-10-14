@@ -9,16 +9,14 @@ import state.State;
 public abstract class Agent {
 	protected Coordinates coordinates;
     protected Policy policy;
-    protected Q q;
-    
-    public void setQ(Q q) {
-    	this.q = q;
+    public Q q;
+
+    public Agent(Coordinates c, Q q, Policy p) {
+        this.q = q;
+        this.coordinates = c;
+        this.policy = p;
     }
-    
-    public Q getQ() {
-    	return this.q;
-    }
-    
+
 	public Coordinates getCoordinates() { return this.coordinates; }
 	
 	/**
