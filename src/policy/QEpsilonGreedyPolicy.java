@@ -4,6 +4,7 @@ import state.State;
 import util.Util;
 import action.Action.action;
 import action.PossibleActions;
+import action.PossibleActionsConcrete;
 
 public class QEpsilonGreedyPolicy extends QPolicy {
 
@@ -18,8 +19,8 @@ public class QEpsilonGreedyPolicy extends QPolicy {
 		Double epsilon_frac = Util.epsilon/((double)action.values().length);
 		PossibleActions possibleActions = this.stateActionMapping.get(s);
 		if(possibleActions == null) {
-			new Exception("this.stateActionMapping.get(s)").printStackTrace();
-			System.exit(0);
+			possibleActions = new PossibleActionsConcrete();
+			this.stateActionMapping.put(s, possibleActions);
 		}
 		
 		// set all probabilities to epsilon divided by number of actions
@@ -27,6 +28,9 @@ public class QEpsilonGreedyPolicy extends QPolicy {
 		
 		// find maximum action and set it to the greedy probability value (1 - epsilon + epsilon/size(A))
 		action max_a = this.q.getArgmaxA(s);
+		if(max_a == null){
+			// FIXME: do something here!!
+		}
 		double greedy_prob = 1 - Util.epsilon + epsilon_frac;
 		possibleActions.setActionProbability(max_a, greedy_prob);
 		

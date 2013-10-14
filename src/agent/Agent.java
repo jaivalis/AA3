@@ -9,8 +9,16 @@ import state.State;
 public abstract class Agent {
 	protected Coordinates coordinates;
     protected Policy policy;
-    public Q q;
-
+    protected Q q;
+    
+    public void setQ(Q q) {
+    	this.q = q;
+    }
+    
+    public Q getQ() {
+    	return this.q;
+    }
+    
 	public Coordinates getCoordinates() { return this.coordinates; }
 	
 	/**

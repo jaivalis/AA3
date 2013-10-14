@@ -26,6 +26,9 @@ public abstract class PossibleActions {
 	}
 
 	public void setActionProbability(Action.action a, double p) {
+		if(a==null){
+			new Exception("action == null?????").printStackTrace();
+		}
 		this.actionProbability.put(a, p);
 	}
 
@@ -59,6 +62,7 @@ public abstract class PossibleActions {
 		Random rand = new Random();
 		float randfl = rand.nextFloat();
 		Iterator<Action.action> itA = this.actionProbability.keySet().iterator();
+
 		float sum = 0.0f;
         Action.action a = null;
 		do {
@@ -70,6 +74,7 @@ public abstract class PossibleActions {
 			a = itA.next();
 			sum += this.getActionProbability(a);
 		} while(randfl > sum);
+
 		return a;
 	}
 	

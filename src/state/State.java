@@ -10,8 +10,8 @@ import util.Coordinates;
 import java.util.ArrayList;
 
 public abstract class State implements Cloneable {
-    protected Coordinates preyC;
-    protected ArrayList<Coordinates> predC;
+    protected Coordinates preyCoordinates;
+    protected ArrayList<Coordinates> predatorsCoordinates;
     protected double stateValue;	// Corresponds to value V (for the policy evaluation algorithm).
 
     public double getStateValue() {	return this.stateValue; }
@@ -44,8 +44,8 @@ public abstract class State implements Cloneable {
      * @return true if predator coordinates match prey coordinates, false otherwise.
      */
     private boolean preyIsCaught() { // TODO: handle predC collide on prey coordinates.
-        for (Coordinates predator : this.predC) {
-            if (this.preyC.equals(predator)) { return true; }
+        for (Coordinates predator : this.predatorsCoordinates) {
+            if (this.preyCoordinates.equals(predator)) { return true; }
         } return false;
     }
 
@@ -53,15 +53,15 @@ public abstract class State implements Cloneable {
      * @return true if two predC share coordinates, false otherwise.
      */
     private boolean predatorsCollide() {
-        switch (this.predC.size()) {
+        switch (this.predatorsCoordinates.size()) {
             case 1:
                 return false;
             case 2:
-                return this.predC.get(0).equals(this.predC.get(1));
+                return this.predatorsCoordinates.get(0).equals(this.predatorsCoordinates.get(1));
             case 3:
-                return (this.predC.get(0).equals(this.predC.get(1)) ||
-                        this.predC.get(1).equals(this.predC.get(2)) ||
-                        this.predC.get(0).equals(this.predC.get(2)));
+                return (this.predatorsCoordinates.get(0).equals(this.predatorsCoordinates.get(1)) ||
+                        this.predatorsCoordinates.get(1).equals(this.predatorsCoordinates.get(2)) ||
+                        this.predatorsCoordinates.get(0).equals(this.predatorsCoordinates.get(2)));
             default:
                 Exception ex = new Exception();
                 ex.printStackTrace();
@@ -74,8 +74,8 @@ public abstract class State implements Cloneable {
 	@Override
 	public String toString() {
 		String ret = "";
-		ret += "Value = " + this.stateValue + " Prey : " + this.preyC;
-        for (Coordinates predator : this.predC) { ret +=  " Predator : " + predator; }
+		ret += "Value = " + this.stateValue + " Prey : " + this.preyCoordinates;
+        for (Coordinates predator : this.predatorsCoordinates) { ret +=  " Predator : " + predator; }
 		return ret;
 	}
 
@@ -87,25 +87,25 @@ public abstract class State implements Cloneable {
 
 	    State otherState = (State) other;
 
-        int thisP = this.predC.size();
-        int otherP = otherState.predC.size();
+        int thisP = this.predatorsCoordinates.size();
+        int otherP = otherState.predatorsCoordinates.size();
         if (thisP != otherP) { return false; }
         for (int i = 0 ; i < thisP; i ++ ){ // FIXME prominent bug depending on State implementation
-            if (this.predC.get(i) != otherState.predC.get(i)) { return false; }
+            if (this.predatorsCoordinates.get(i) != otherState.predatorsCoordinates.get(i)) { return false; }
         }
-        return this.preyC == otherState.preyC;
+        return this.preyCoordinates == otherState.preyCoordinates;
     }
 
     @Override
     public int hashCode() {
-    	String hashString = "1" + this.preyC.getX() + this.preyC.getY();
-        for (Coordinates predator : this.predC) {
+    	String hashString = "1" + this.preyCoordinates.getX() + this.preyCoordinates.getY();
+        for (Coordinates predator : this.predatorsCoordinates) {
             hashString += predator.getX() + predator.getY();
         } return Integer.parseInt(hashString);
     }
 
-    public Coordinates getPreyCoordinates() { return this.preyC; }
-    public ArrayList<Coordinates> getPredatorCoordinates() { return this.predC; }
+    public Coordinates getPreyCoordinates() { return this.preyCoordinates; }
+    public ArrayList<Coordinates> getPredatorCoordinates() { return this.predatorsCoordinates; }
 
     public boolean isTerminal() { return preyIsCaught() || predatorsCollide(); }
 
@@ -116,18 +116,18 @@ public abstract class State implements Cloneable {
     public void nextState(JointAction ja) {
         // 'move' prey
         Action.action preyAction = ja.preyAction;
-        for (int i = 0; i < this.predC.size(); i++) { // move all predators in the opposite direction.
-            Coordinates currCoord = this.predC.get(0);
+        for (int i = 0; i < this.predatorsCoordinates.size(); i++) { // move all predators in the opposite direction.
+            Coordinates currCoord = this.predatorsCoordinates.get(0);
 			Coordinates newCoord = currCoord.createShifted(preyAction.getOpposite());
-			this.predC.set(i, newCoord);
+			this.predatorsCoordinates.set(i, newCoord);
         }
         
         // move predators according to their actions.
         int index = 0;
-        for (int i = 0; i < this.predC.size(); i++) { // move all predators in the opposite direction.
-            Coordinates currCoord = this.predC.get(i);
+        for (int i = 0; i < this.predatorsCoordinates.size(); i++) { // move all predators in the opposite direction.
+            Coordinates currCoord = this.predatorsCoordinates.get(i);
 			Coordinates newCoord = currCoord.createShifted(ja.predatorActions.get(i));
-			this.predC.set(i, newCoord);
+			this.predatorsCoordinates.set(i, newCoord);
         }
     }
     

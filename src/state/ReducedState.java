@@ -10,18 +10,18 @@ import java.util.ArrayList;
  */
 public class ReducedState extends State {
     public ReducedState(ArrayList<Coordinates> pred) {
-        this.preyC = new Coordinates(5, 5);
-        this.predC = pred;
+        this.preyCoordinates = new Coordinates(5, 5);
+        this.predatorsCoordinates = pred;
     }
 
     /**
      * Random state constructor
      */
     public ReducedState(int predators) {
-        this.predC = new ArrayList<>();
-        this.preyC = new Coordinates(5, 5);
+        this.predatorsCoordinates = new ArrayList<>();
+        this.preyCoordinates = new Coordinates(5, 5);
         for (int i = 0; i < predators; i++) {
-            this.predC.add(new Coordinates());
+            this.predatorsCoordinates.add(new Coordinates());
         }
     }
 }

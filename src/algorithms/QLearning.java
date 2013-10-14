@@ -14,7 +14,7 @@ import agent.AgentsCollection;
 
 public class QLearning {
     /**
-     * Implementation of the Q-Learning algorithm.
+     * Implementation of the Q-Learning algorithm for many agents.
      * @param pi The epsilon-greedy policy that will be gradually updated within the algorithm according to the Q values
      * @param initialQ Initial value for Q.
      * @param alpha Learning rate.
@@ -35,8 +35,8 @@ public class QLearning {
 
                 for(Agent agent : agents){
                 	action single_action = ja.actionsMap.get(agent);
-                	double q_sa = agent.q.get(s, single_action);
-                    double max_a_q = agent.q.getMax(s_prime);
+                	double q_sa = agent.getQ().get(s, single_action);
+                    double max_a_q = agent.getQ().getMax(s_prime);
                     
                     // the reward r that is consequence of action a, in our case (prey/predator system) is always set 
                     // as the reward associated with the destination state
@@ -45,7 +45,7 @@ public class QLearning {
                     double discounted_max_a_q = gamma * max_a_q;
                     double newQ_sa = q_sa + alpha * (r + discounted_max_a_q - q_sa);
 
-                    agent.q.set(s, single_action, newQ_sa); // Q(s,a) = Q(s,a) + α[r + γmax_aQ() - Q(s,a)]	
+                    agent.getQ().set(s, single_action, newQ_sa); // Q(s,a) = Q(s,a) + α[r + γmax_aQ() - Q(s,a)]	
                 }
                 s = s_prime;
                 //System.out.println("a:"+a+" s':"+s_prime); //FIXME DEBUG

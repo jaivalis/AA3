@@ -55,6 +55,10 @@ public class Q {
      */
 	public HashSet<StateAction> getStateActions(State s) {
 		HashSet<StateAction> sa_set = this.s_sa.get(s);
+		if(sa_set == null) {
+			sa_set = new HashSet<StateAction>();
+			this.s_sa.put(s, sa_set);
+		}
 		return sa_set;
 	}
 
@@ -91,7 +95,11 @@ public class Q {
 				max = val;
 				argmax_a = sa.getA();
 			}
-		} return argmax_a;
+		}
+		if(argmax_a == null) {
+			new Exception("value returned by getArgmaxA is null!!!").printStackTrace();
+		}
+		return argmax_a;
 	}
 
     /**
