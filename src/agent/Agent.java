@@ -11,6 +11,12 @@ public abstract class Agent {
     protected Policy policy;
     public Q q;
 
+    public Agent(Coordinates c, Q q, Policy p) {
+        this.q = q;
+        this.coordinates = c;
+        this.policy = p;
+    }
+
 	public Coordinates getCoordinates() { return this.coordinates; }
 	
 	/**

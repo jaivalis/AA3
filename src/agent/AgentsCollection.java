@@ -1,16 +1,25 @@
 package agent;
 
+import util.Coordinates;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class AgentsCollection implements Iterable<Agent>, Iterator<Agent>
-{
-	public ArrayList<Predator> predators = new ArrayList<Predator>();
-	public ArrayList<Prey> preys = new ArrayList<Prey>();
+public class AgentsCollection implements Iterable<Agent>, Iterator<Agent> {
+	public ArrayList<Predator> predators = new ArrayList<>();
+	public ArrayList<Prey> preys = new ArrayList<>();
 	private Iterator<Predator> predatorsIt = null;
 	private Iterator<Prey> preysIt = null;
-	
+
+
+    public ArrayList<Coordinates> getPredatorsCoordinates() {
+        ArrayList<Coordinates> ret = new ArrayList<>();
+        for (Predator p: this.predators) {
+            ret.add(p.getCoordinates());
+        } return ret;
+    }
+
 	@Override
 	public Iterator<Agent> iterator() {
 		this.predatorsIt = predators.iterator();
@@ -36,6 +45,6 @@ public class AgentsCollection implements Iterable<Agent>, Iterator<Agent>
 
 	@Override
 	public void remove() {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
 	}
 }

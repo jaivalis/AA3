@@ -21,8 +21,15 @@ public class Coordinates {
         this.y = r.nextInt(Util.DIM);
     }
 	public Coordinates(int x, int y) { this.x = x;	this.y = y; }
-	
-	public Coordinates(Coordinates c) { this.x = c.x; this.y = c.y; }
+
+    /**
+     * Copy constructor
+     * @param c Coordinates to be copied
+     */
+	public Coordinates(Coordinates c) {
+        this.x = new Integer(c.x);
+        this.y = new Integer(c.y);
+    }
 
 	public int getX() { return x; }	
 	public int getY() { return y; }

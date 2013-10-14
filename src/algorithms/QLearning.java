@@ -15,25 +15,22 @@ import agent.AgentsCollection;
 public class QLearning {
     /**
      * Implementation of the Q-Learning algorithm.
-     * @param pi The epsilon-greedy policy that will be gradually updated within the algorithm according to the Q values
-     * @param initialQ Initial value for Q.
+     * @param agents Container for the environment agents
      * @param alpha Learning rate.
      * @param gamma Decay factor.
      * @return
      */
-    public void run(AgentsCollection agents, double initialQ, double alpha, double gamma, int episodeCount) {
+    public static void run(AgentsCollection agents, double alpha, double gamma, int episodeCount) {
         for (int i = 0; i < episodeCount; i++) {  // repeat for each episode
-            State s = new ReducedState(Util.PREDATOR_COUNT); // initialize s randomly
-            State s_prime;
+            ReducedState s = new ReducedState(agents.getPredatorsCoordinates()); // initialize s randomly
+            ReducedState s_prime;
             do { // repeat for each step of episode
-            	JointAction ja = new JointAction(s,agents);
+            	JointAction ja = new JointAction(s, agents);
 
-                // Take action a. observe r, s'
-            	s_prime = s;
-            	s = (State) s.clone();
-                s_prime.nextState(ja); // make transition from s to s'
+                // Take action ja
+                s_prime = s.nextState(ja);   // make transition from s to s'
 
-                for(Agent agent : agents){
+                for(Agent agent : agents) {
                 	action single_action = ja.actionsMap.get(agent);
                 	double q_sa = agent.q.get(s, single_action);
                     double max_a_q = agent.q.getMax(s_prime);
@@ -52,5 +49,4 @@ public class QLearning {
             } while (!s.isTerminal()); // repeat until s is terminal
         }
     }
-
 }

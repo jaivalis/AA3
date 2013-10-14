@@ -19,9 +19,10 @@ public class Util {
     public final static double MAX_ROUNDS = 10000;
 	public static final int NUMBER_OF_TEST_RUNS = 100;
 
-	public static double INITIAL_Q_VALUE = 15.0;
+    public static double INITIAL_Q_VALUE = 15.0;
+    public static double ALPHA = 0.1;
+    public static double GAMMA = 0.5;
 
-	public static int PREDATOR_COUNT = 2;
 
     public ArrayList<State> getNeighbors(State s) {
         return null; // TODO
