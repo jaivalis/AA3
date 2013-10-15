@@ -11,7 +11,7 @@ public class Util {
     /* Task 1 */
 	public final static int DIM = 11;               /* Dimension of the grid world. */
 	public final static double PREYREWARD = 10.0;   /* Reward assigned to the Prey actor. */
-    public static final int EPISODE_COUNT = 1000;
+    public static final int EPISODE_COUNT = 1000;   /* Number of episodes used for learning. */
     /* Task 2 */
 	public static double epsilon = 0.1;             /* Used in the Epsilon-Greedy implementation. */
     public static double tau = 4;             /* Softmax action selection temperature */

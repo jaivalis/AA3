@@ -1,7 +1,5 @@
 package state;
 
-import action.Action;
-import action.JointAction;
 import agent.Agent;
 import agent.Predator;
 import agent.Prey;
@@ -26,18 +24,12 @@ public abstract class State implements Cloneable {
         return -this.getPreyReward();
     }
 
-    public double getReward(Prey agent) {
-    	return this.getPreyReward();
-    }
-
-    public double getReward(Predator agent) {
-    	return this.getPredatorReward();
-    }
-    
     public double getReward(Agent agent) {
-    	new Exception("should not get there, should call getReward(Prey) or getReward(Predator)").printStackTrace();
-    	System.exit(0);
-		return 0;
+        if (agent instanceof Prey) {
+            return this.getPreyReward();
+        } if (agent instanceof Predator) {
+            return this.getPredatorReward();
+        } return Double.NEGATIVE_INFINITY;
     }
 
     /**
