@@ -9,8 +9,6 @@ import policy.RandomPredatorPolicy;
 import policy.RandomPreyPolicy;
 import util.Coordinates;
 
-import java.util.ArrayList;
-
 public class Builder {
     static Coordinates[] predatorCoordinates = {new Coordinates(0,0), new Coordinates(10,0), new Coordinates(0,10)};
 
@@ -48,7 +46,7 @@ public class Builder {
         for (int i = 0; i < predatorCount; i++) {
             Q predQ = new Q(initialQ);
             QEpsilonGreedyPolicy predP = new QEpsilonGreedyPolicy();
-            preyP.setQ(preyQ);
+            predP.setQ(preyQ);
             Predator pp = new Predator(Builder.predatorCoordinates[i], predQ, predP);
             ac.predators.add(pp);
         }

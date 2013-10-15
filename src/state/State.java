@@ -100,8 +100,9 @@ public abstract class State implements Cloneable {
     public int hashCode() {
     	String hashString = "1" + this.preyCoordinates.getX() + this.preyCoordinates.getY();
         for (Coordinates predator : this.predatorsCoordinates) {
-            hashString += predator.getX() + predator.getY();
-        } return Integer.parseInt(hashString);
+            hashString += predator.getX() +""+ predator.getY();
+        }
+        return Integer.parseInt(hashString);
     }
 
     public Coordinates getPreyCoordinates() { return this.preyCoordinates; }

@@ -1,13 +1,8 @@
 package a3;
 
 import agent.AgentsCollection;
-import agent.Predator;
-import agent.Prey;
-import algorithms.QLearning;
 import episode.EpisodeGenerator;
 import state.ReducedState;
-import util.Coordinates;
-import util.Util;
 
 public class Experiment1 {
 

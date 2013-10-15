@@ -22,7 +22,8 @@ public class QLearning {
      */
     public static void run(AgentsCollection agents, double alpha, double gamma, int episodeCount) {
         for (int i = 0; i < episodeCount; i++) {  // repeat for each episode
-            ReducedState s = new ReducedState(agents.getPredatorsCoordinates()); // initialize s randomly
+//            ReducedState s = new ReducedState(agents.getPredatorsCoordinates()); // initialize s randomly
+            ReducedState s = new ReducedState(agents.predators.size()); // initialize s randomly
             ReducedState s_prime;
             do { // repeat for each step of episode
             	JointAction ja = new JointAction(s, agents);

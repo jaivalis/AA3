@@ -25,13 +25,13 @@ public class ReducedState extends State {
         // 'move' prey
         ArrayList<Coordinates> predatorsCoordinates = new ArrayList<>();
         Action.action preyAction = ja.preyAction;
-        for (int i = 0; i < this.predC.size(); i++) { // move all predators in the opposite direction.
-            Coordinates currCoord = this.predC.get(i);
+        for (int i = 0; i < this.predatorsCoordinates.size(); i++) { // move all predators in the opposite direction.
+            Coordinates currCoord = this.predatorsCoordinates.get(i);
             Coordinates newCoord = currCoord.createShifted(preyAction.getOpposite());
             predatorsCoordinates.add(newCoord);
         }
 
-        for (int i = 0; i < this.predC.size(); i++) { // move predators according to their actions.
+        for (int i = 0; i < this.predatorsCoordinates.size(); i++) { // move predators according to their actions.
             Coordinates currCoord = predatorsCoordinates.get(i);
             Coordinates newCoord = currCoord.createShifted(ja.predatorActions.get(i));
             predatorsCoordinates.set(i, newCoord);

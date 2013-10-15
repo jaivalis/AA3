@@ -15,12 +15,12 @@ public class Q {
 	 * mapping from a StateAction object, which represents a <state,action> tuple, to a number that represents the Q value
      * of the state/action.
 	 */
-	HashMap<StateAction, Double> sa_d = new HashMap<StateAction,Double>();
+	HashMap<StateAction, Double> sa_d = new HashMap<>();
 	
 	/**
 	 * mapping from a state to a set of state/action tuples, that are all actions that can be performed from that state.
 	 */
-    HashMap<State, HashSet<StateAction>> s_sa = new HashMap<State,HashSet<StateAction>>();
+    HashMap<State, HashSet<StateAction>> s_sa = new HashMap<>();
 
     double initialQvalue = 0.0;
     
@@ -42,11 +42,21 @@ public class Q {
 		// structure for cheap state-action retrieval
 		HashSet<StateAction> sa_set = this.s_sa.get(s);
 		if(sa_set == null) {
-			sa_set = new HashSet<StateAction>();
+			sa_set = new HashSet<>();
 		}
         sa_set.add(sa);
 		this.s_sa.put(s, sa_set);
 	}
+
+    /**
+     * Will create entries in the hashsets for state s and initialize Q values to the initialQValue.
+     * @param s The state to be added to Q structures.
+     */
+    private void initializeState(State s) {
+        for (action a : action.values()) {
+            this.set(s, a, this.initialQvalue);
+        }
+    }
 
     /**
      * Returns an arrayList containing all the stateAction pairs associated to a state.
@@ -55,9 +65,9 @@ public class Q {
      */
 	public HashSet<StateAction> getStateActions(State s) {
 		HashSet<StateAction> sa_set = this.s_sa.get(s);
-		if(sa_set == null) {
-			sa_set = new HashSet<StateAction>();
-			this.s_sa.put(s, sa_set);
+		if(sa_set == null) { // sa_set does not exist yet.
+            initializeState(s);         // initialize.
+            sa_set = this.s_sa.get(s);  // retrieve the reference.
 		}
 		return sa_set;
 	}
@@ -86,8 +96,8 @@ public class Q {
      * @return action; The optimal action.
      */
 	public action getArgmaxA(State s) {
+        double max = Double.NEGATIVE_INFINITY;
 		HashSet<StateAction> sa_set = this.getStateActions(s);
-		double max = Double.NEGATIVE_INFINITY;
 		action argmax_a = null;
 		for(StateAction sa : sa_set) {
 			Double val = this.sa_d.get(sa);
