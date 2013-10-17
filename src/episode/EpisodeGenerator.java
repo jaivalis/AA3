@@ -41,6 +41,9 @@ public class EpisodeGenerator {
             episode.addStep(s, ja, preyReward, predReward, s_prime);
             s = s_prime;
 //            System.out.println("step #"+steps + " " + s);
+            if(steps == 1000){
+            	System.out.println(steps+"crap.");
+            }
         } while(!s_prime.isTerminal() && steps < 1000000);
 
         episode.refreshDiscounted(gamma);
