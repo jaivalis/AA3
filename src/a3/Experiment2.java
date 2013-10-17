@@ -15,15 +15,17 @@ public class Experiment2 {
     public static void main(String[] args) {
         int predatorCount = 2;
 
-        AgentsCollection agents = Builder.experiment2Config(predatorCount, Util.INITIAL_Q_VALUE);
-
-        ReducedState simulationInitialState = new ReducedState(agents.getPredatorsCoordinates());
-
-        EpisodeGenerator simulator = new EpisodeGenerator(agents);
 
         System.out.println("episodeCount, averageRounds");
         for(int episodeCount = 50; episodeCount < Util.EPISODE_COUNT; episodeCount += 50) {
-            // 1. train
+
+        	AgentsCollection agents = Builder.experiment2Config(predatorCount, Util.INITIAL_Q_VALUE);
+
+            ReducedState simulationInitialState = new ReducedState(agents.getPredatorsCoordinates());
+
+            EpisodeGenerator simulator = new EpisodeGenerator(agents);
+
+        	// 1. train
             QLearning.run(agents, Util.ALPHA, Util.GAMMA, episodeCount);
             System.out.println("%trained.");
 

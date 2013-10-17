@@ -45,6 +45,7 @@ public class QLearning {
                 }
                 s = s_prime;
                 //System.out.println("a:"+a+" s':"+s_prime); //FIXME DEBUG
+                ja = null;
             } while (!s.isTerminal()); // repeat until s is terminal
         }
     }
