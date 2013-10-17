@@ -94,7 +94,7 @@ public class QLearning {
             // initialize s randomly
             agents.randomize();
             MinimalState s = new MinimalState(agent, agents);
-            MinimalState s_prime;
+            MinimalState s_prime = null;
 
             do {// repeat for each step of episode
                 JointAction ja = new JointAction(s, agents);

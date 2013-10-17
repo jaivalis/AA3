@@ -1,5 +1,6 @@
 package state;
 
+import action.Action.action;
 import action.JointAction;
 import agent.Agent;
 import agent.AgentsCollection;
@@ -52,13 +53,15 @@ public class MinimalState extends State {
             newPredators.add( new Predator(p) );
         }
 
-        newPrey.setCoordinates( newPrey.getCoordinates().createShifted(ja.preyAction));
+//        newPrey.setCoordinates( newPrey.getCoordinates().createShifted(ja.preyAction));
 
-        for (Predator p : newPredators) {
+        for (int i = 0; i < this.predators.size(); i++) {
             // move all predators in the opposite direction.
-            p.setCoordinates( newPrey.getCoordinates().createShifted(ja.get(prey)));
+            Predator old = this.predators.get(i);
+            action aa = ja.get(prey);
+            newPredators.get(i).setCoordinates( old.getCoordinates().createShifted(ja.get(prey)));
             // move predators according to their original actions.
-            p.setCoordinates( newPrey.getCoordinates().createShifted(ja.get(p)) );
+            newPredators.get(i).setCoordinates( old.getCoordinates().createShifted(ja.get(old)));
         }
 
         return new MinimalState( this.subject, new AgentsCollection(newPrey, newPredators) );
@@ -134,4 +137,56 @@ public class MinimalState extends State {
         }
         return Integer.parseInt(hashString);
     }
+
+    @Override
+    public String toString() {
+        String ret = "";
+        ret += "Value = " + this.stateValue + " Prey : " + this.prey.getCoordinates();
+        for (Predator predator : this.predators) { ret +=  " Predator : " + predator; }
+        return ret;
+    }
+
+    /**
+     * @return true if predator coordinates match prey coordinates, false otherwise.
+     */
+    private boolean preyIsCaught() { // TODO: handle predC collide on prey coordinates.
+        for (Predator predator : this.predators) {
+            if (this.prey.getCoordinates().equals(predator.getCoordinates())) { return true; }
+        } return false;
+    }
+
+    private boolean predatorsCollide() { // TODO: handle predC collide on prey coordinates.
+        switch (this.predators.size()) {
+            case 1:
+                return false;
+            case 2:
+                return this.predators.get(0).getCoordinates().equals(this.predators.get(1).getCoordinates());
+            case 3:
+                return (this.predators.get(0).getCoordinates().equals(this.predators.get(1).getCoordinates()) ||
+                        this.predators.get(1).getCoordinates().equals(this.predators.get(2).getCoordinates()) ||
+                        this.predators.get(0).getCoordinates().equals(this.predators.get(2).getCoordinates()));
+            default:
+                Exception ex = new Exception();
+                ex.printStackTrace();
+                System.exit(-1);
+        } return false;
+    }
+
+    public boolean isTerminal() { return this.predatorsCollide() || this.preyIsCaught(); }
+
+    public double getReward() {
+        if (this.subject instanceof Prey) {
+            return this.getPreyReward();
+        } if (this.subject instanceof Predator) {
+            return this.getPredatorReward();
+        } return Double.NEGATIVE_INFINITY;
+    }
+
+    public double getPreyReward() {
+        if (preyIsCaught())     { return -10.0;}
+        if (predatorsCollide()) { return 10.0; }
+        return 0.0;
+    }
+
+    public double getPredatorReward() { return -this.getPreyReward(); }
 }

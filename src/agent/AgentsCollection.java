@@ -12,10 +12,8 @@ public class AgentsCollection implements Iterable<Agent>, Iterator<Agent> {
 	private Iterator<Predator> predatorsIt = null;
 	private Iterator<Prey> preysIt = null;
 
-
-    public AgentsCollection() {
-
-    }
+    /** Default constructor */
+    public AgentsCollection() { }
 
     public AgentsCollection(Prey prey, ArrayList<Predator> predators) {
         this.preys = new ArrayList<>();

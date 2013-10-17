@@ -2,6 +2,7 @@ package action;
 
 import java.util.HashMap;
 
+import state.MinimalState;
 import state.State;
 import action.Action.action;
 import agent.Agent;
@@ -14,7 +15,7 @@ public class JointAction {
     public action preyAction;
     public HashMap<Integer, action> predatorActions;
 
-    public HashMap<Agent, action> actionsMap = new HashMap<>();
+    public HashMap<Agent, action> actionsMap;
     /**
      * Creates a joint action of all the agents based on the current state.
      * @param s Current state.
@@ -22,6 +23,7 @@ public class JointAction {
      * @param predators Contains the predators.
      */
     public JointAction(State s, AgentsCollection agents) {
+        this.actionsMap = new HashMap<>();
     	Prey prey = agents.preys.get(0);
     	this.preyAction = prey.getAction(s);
     	this.actionsMap.put(prey, this.preyAction);
@@ -32,6 +34,25 @@ public class JointAction {
         	action act = pred.getAction(s);
             predatorActions.put(i++, act);
         	this.actionsMap.put(pred, act);
+        }
+    }
+
+    /**
+     * Creates a joint action of all the agents based on the current state.
+     * @param s Current state.
+     */
+    public JointAction(MinimalState s, AgentsCollection agents) {
+        this.actionsMap = new HashMap<>();
+        Prey prey = agents.preys.get(0);
+        this.preyAction = prey.getAction(s);
+        this.actionsMap.put(prey, this.preyAction);
+
+        int i = 0;
+        predatorActions = new HashMap<>();
+        for (Predator pred : agents.predators) {
+            action act = pred.getAction(s);
+            predatorActions.put(i++, act);
+            this.actionsMap.put(pred, act);
         }
     }
 
