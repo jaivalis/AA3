@@ -17,6 +17,13 @@ public abstract class Agent {
         this.policy = p;
     }
 
+    /** Copy constructor */
+    public Agent(Agent a) {
+        this.q = a.q;
+        this.coordinates = a.coordinates;
+        this.policy = a.policy;
+    }
+
 	public Coordinates getCoordinates() { return this.coordinates; }
 	
 	/**

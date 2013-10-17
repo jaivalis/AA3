@@ -10,6 +10,11 @@ public class Predator extends Agent {
     public Predator(Coordinates c, Q q, Policy p) {
         super(c, q, p);
     }
+
+    /** Copy constructor */
+    public Predator(Predator p) {
+        super(p);
+    }
 //    /**
 //     * Constructor is used for multi-agent systems.
 //     * @param id The number of the predator.

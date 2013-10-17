@@ -15,14 +15,12 @@ public abstract class State implements Cloneable {
     public double getStateValue() {	return this.stateValue; }
 
     public double getPreyReward() {
-        if (preyIsCaught())     { return -10.0; }
+        if (preyIsCaught())     { return -10.0;}
         if (predatorsCollide()) { return 10.0; }
         return 0.0;
     }
 
-    public double getPredatorReward() {
-        return -this.getPreyReward();
-    }
+    public double getPredatorReward() { return -this.getPreyReward(); }
 
     public double getReward(Agent agent) {
         if (agent instanceof Prey) {
@@ -79,13 +77,10 @@ public abstract class State implements Cloneable {
 
 	    State otherState = (State) other;
 
-        int thisP = this.predatorsCoordinates.size();
-        int otherP = otherState.predatorsCoordinates.size();
-        if (thisP != otherP) { return false; }
-        for (int i = 0 ; i < thisP; i ++ ){ // FIXME prominent bug depending on State implementation
+        for (int i = 0 ; i < this.predatorsCoordinates.size(); i++ ){ // FIXME prominent bug depending on State implementation
             if (this.predatorsCoordinates.get(i) != otherState.predatorsCoordinates.get(i)) { return false; }
         }
-        return this.preyCoordinates == otherState.preyCoordinates;
+        return true;
     }
 
     @Override
@@ -104,6 +99,5 @@ public abstract class State implements Cloneable {
     public Coordinates getPreyCoordinates() { return this.preyCoordinates; }
     public ArrayList<Coordinates> getPredatorCoordinates() { return this.predatorsCoordinates; }
 
-    public boolean isTerminal() { return preyIsCaught() || predatorsCollide(); }
-
+    public boolean isTerminal() { return this.predatorsCollide() || this.preyIsCaught(); }
 }

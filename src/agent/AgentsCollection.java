@@ -13,6 +13,25 @@ public class AgentsCollection implements Iterable<Agent>, Iterator<Agent> {
 	private Iterator<Prey> preysIt = null;
 
 
+    public AgentsCollection() {
+
+    }
+
+    public AgentsCollection(Prey prey, ArrayList<Predator> predators) {
+        this.preys = new ArrayList<>();
+        this.preys.add(prey);
+        this.predators = predators;
+    }
+
+    /**
+     * Sets the predators coordinates to random values.
+     */
+    public void randomize() {
+        for (Predator p : this.predators) {
+            p.setCoordinates(new Coordinates());
+        }
+    }
+
     public ArrayList<Coordinates> getPredatorsCoordinates() {
         ArrayList<Coordinates> ret = new ArrayList<>();
         for (Predator p: this.predators) {

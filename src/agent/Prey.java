@@ -16,10 +16,8 @@ public class Prey extends Agent {
         super(c, q, p);
     }
 
-//	public Prey(Coordinates c) { this.coordinates = c; }
-	
-	/** copy constructor */
-//	public Prey(Prey p) { this.coordinates = p.coordinates; }
+    /** copy constructor */
+	public Prey(Prey p) { super(p); }
 
 	@Override
 	public String toString() { return "Prey (" + this.getCoordinates().getX() + ", " + this.getCoordinates().getY() + ")"; }

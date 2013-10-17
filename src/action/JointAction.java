@@ -10,10 +10,11 @@ import agent.Predator;
 import agent.Prey;
 
 public class JointAction {
+    // TODO make all private, use getter
     public action preyAction;
     public HashMap<Integer, action> predatorActions;
 
-    public HashMap<Agent, action> actionsMap = new HashMap<Agent, action>();
+    public HashMap<Agent, action> actionsMap = new HashMap<>();
     /**
      * Creates a joint action of all the agents based on the current state.
      * @param s Current state.
@@ -32,5 +33,9 @@ public class JointAction {
             predatorActions.put(i++, act);
         	this.actionsMap.put(pred, act);
         }
+    }
+
+    public action get(Agent a) {
+        return actionsMap.get(a);
     }
 }
