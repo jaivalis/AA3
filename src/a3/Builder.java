@@ -46,7 +46,7 @@ public class Builder {
         for (int i = 0; i < predatorCount; i++) {
             Q predQ = new Q(initialQ);
             QEpsilonGreedyPolicy predP = new QEpsilonGreedyPolicy();
-            predP.setQ(preyQ);
+            predP.setQ(predQ);
             Predator pp = new Predator(Builder.predatorCoordinates[i], predQ, predP);
             ac.predators.add(pp);
         }
