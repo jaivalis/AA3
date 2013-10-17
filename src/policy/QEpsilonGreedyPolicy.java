@@ -37,5 +37,4 @@ public class QEpsilonGreedyPolicy extends QPolicy {
 		// stochastic query to get action for state s
 		return super.getAction(s);
 	}
-
 }

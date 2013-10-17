@@ -29,7 +29,7 @@ public class EpisodeGenerator {
         ReducedState s_prime = initialState;
 
         int steps = 0;
-        System.out.println("step #"+steps + " " + s);
+//        System.out.println("step #"+steps + " " + s);
         do {
         	steps++;
             JointAction ja = new JointAction(s, this.agents);
@@ -40,7 +40,7 @@ public class EpisodeGenerator {
             double predReward = s_prime.getPredatorReward();
             episode.addStep(s, ja, preyReward, predReward, s_prime);
             s = s_prime;
-            System.out.println("step #"+steps + " " + s);
+//            System.out.println("step #"+steps + " " + s);
         } while(!s_prime.isTerminal() && steps < 1000000);
 
         episode.refreshDiscounted(gamma);

@@ -36,6 +36,14 @@ public class Episode implements Iterable<EpisodeStep> {
 		Collections.reverse(reverted);
 		return reverted;
 	}
+
+    /**
+     * Returns the size of the episode in terms of episode steps.
+     * @return the size of the episode in terms of episode steps.
+     */
+    public int size() {
+        return this.steps.size();
+    }
 	
 	public void refreshDiscounted(double gamma) {
 		double prev_discountedPrey = 0.0, prev_discountedPred = 0.0;
