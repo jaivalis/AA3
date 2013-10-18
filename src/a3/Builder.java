@@ -3,7 +3,9 @@ package a3;
 import agent.AgentsCollection;
 import agent.Predator;
 import agent.Prey;
+import policy.LocalEpsilonPolicy;
 import policy.Q;
+import policy.Q2;
 import policy.QEpsilonGreedyPolicy;
 import policy.RandomPredatorPolicy;
 import policy.RandomPreyPolicy;
@@ -64,15 +66,13 @@ public class Builder {
     public static AgentsCollection experiment2MiniMaxQConfig(double initialQ) {
         AgentsCollection ac = new AgentsCollection();
 
-        Q preyQ = new Q(initialQ);
-        QEpsilonGreedyPolicy preyP = new QEpsilonGreedyPolicy();
-        preyP.setQ(preyQ);
+        Q preyQ = new Q2(initialQ);
+        LocalEpsilonPolicy preyP = new LocalEpsilonPolicy();
         Prey p = new Prey(new Coordinates(5, 5), preyQ, preyP);
         ac.preys.add(p);
 
-        Q predQ = new Q(initialQ);
-        QEpsilonGreedyPolicy predP = new QEpsilonGreedyPolicy();
-        predP.setQ(predQ);
+        Q predQ = new Q2(initialQ);
+        LocalEpsilonPolicy predP = new LocalEpsilonPolicy();
         Predator pp = new Predator(Builder.predatorCoordinates[0], predQ, predP);
         ac.predators.add(pp);
         return ac;

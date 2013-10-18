@@ -42,15 +42,14 @@ public class MiniMaxQLearning {
                 ReducedState s_prime = prevS.nextState(ja);
                 double preyR = s_prime.getPreyReward();
                 double predatorR = s_prime.getPreyReward();
-                MiniMaxQLearning.learn(prey, s, ja.preyAction, ja.predatorActions.get(predator), preyR, s_prime, preyV, alpha, gamma);
-                MiniMaxQLearning.learn(prey, s, ja.predatorActions.get(predator), ja.preyAction, predatorR, s_prime, predatorV, alpha, gamma);
+                MiniMaxQLearning.learn(prey, s, ja.preyAction, ja.predatorActions.get(0), preyR, s_prime, preyV, alpha, gamma);
+                MiniMaxQLearning.learn(prey, s, ja.predatorActions.get(0), ja.preyAction, predatorR, s_prime, predatorV, alpha, gamma);
                 alpha = alpha * decay;
             }
         }
     }
     
     public static void learn(Agent agent, ReducedState s, action a, action o, double rew, ReducedState s_prime, V v, double alpha, double gamma) {
-    	
     	// extracting objects that will be useful later
     	Q q = agent.getQ();
     	
@@ -58,7 +57,14 @@ public class MiniMaxQLearning {
     	LocalEpsilonPolicy pi = (LocalEpsilonPolicy)agent.getPolicy();
     	
     	// setting Q[s,a,o]
-    	double q_sao = (1-alpha) * q.get(s_prime, a, o)  + alpha * (rew + gamma * v.get(s_prime));
+
+    	Double v_s_prime = v.get(s_prime);
+    	if(v_s_prime == null) {// lazy value filling
+    		v_s_prime = 0.0;
+    		v.put(s_prime, v_s_prime);
+    	}
+    	
+    	double q_sao = (1-alpha) * q.get(s_prime, a, o) + alpha * (rew + gamma * v_s_prime);
     	q.set(s, a, o, q_sao);
     	
 		// finding pi[s,.] , not with linear programming, but even in this
