@@ -82,7 +82,7 @@ public class MiniMaxQLearning {
     	for(action designated_action : action.values()) {
     		for(double epsilon = 0.0; epsilon < max_epsilon; epsilon += epsilon_increment) {
     			pi.setEpsilonAction(s, epsilon, designated_action);
-    			
+
 		    	// calculating min{o'
 		    	double min = Double.POSITIVE_INFINITY;
 		    	for(action o_prime : action.values()) {
@@ -107,6 +107,7 @@ public class MiniMaxQLearning {
     	// configuring policy for current state
     	pi.setEpsilonAction(s, argmax_epsilon, argmax_action);
     	
+    	// updating V values
     	double v_min = Double.POSITIVE_INFINITY;
     	for(action o_prime: action.values()) {
     		double sum = 0.0;
