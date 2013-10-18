@@ -2,8 +2,6 @@ package episode;
 
 import action.JointAction;
 import agent.AgentsCollection;
-import agent.Predator;
-import agent.Prey;
 import state.State;
 
 import java.util.ArrayList;

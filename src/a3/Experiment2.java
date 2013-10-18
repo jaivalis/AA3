@@ -2,7 +2,6 @@ package a3;
 
 import agent.AgentsCollection;
 import algorithms.QLearning;
-import episode.Episode;
 import episode.EpisodeGenerator;
 import state.ReducedState;
 import util.Util;
