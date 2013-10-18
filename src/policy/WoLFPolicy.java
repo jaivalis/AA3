@@ -16,6 +16,7 @@ public class WoLFPolicy extends Policy {
     protected HashMap<StateAction, Double> Z;
 
     public WoLFPolicy() {
+        super();
         this.X = new HashMap<>();
         this.Z = new HashMap<>();
     }
@@ -44,10 +45,21 @@ public class WoLFPolicy extends Policy {
         return super.getAction(s);
     }
 
+    private void putEquiprobable(StateAction sa) {
+        this.X.put(sa, 0.2);
+        this.Z.put(sa, 0.2);
+    }
+
     public double getX(StateAction sa) {
+        if (this.X.get(sa) == null) {
+            this.putEquiprobable(sa);
+        }
         return this.X.get(sa);
     }
     public double getZ(StateAction sa) {
+        if (this.X.get(sa) == null) {
+            this.putEquiprobable(sa);
+        }
         return this.Z.get(sa);
     }
 

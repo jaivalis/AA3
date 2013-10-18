@@ -23,7 +23,7 @@ public class Experiment3 {
             ReducedState simulationInitialState = new ReducedState(agents.getPredatorsCoordinates());
 
             // 1. train
-            MiniMaxQLearning.run(agents, Util.GAMMA, eta, decay, episodeCount);
+            MiniMaxQLearning.run(agents, Util.GAMMA, decay, episodeCount);
             System.out.println("%trained.");
 
             // 2. simulate & output results
