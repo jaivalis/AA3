@@ -17,8 +17,7 @@ public class JointAction {
     /**
      * Creates a joint action of all the agents based on the current state.
      * @param s Current state.
-     * @param p Prey instance.
-     * @param predators Contains the predators.
+     * @param agents The agents.
      */
     public JointAction(State s, AgentsCollection agents) {
     	Prey prey = agents.preys.get(0);

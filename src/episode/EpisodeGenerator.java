@@ -2,12 +2,7 @@ package episode;
 
 import action.JointAction;
 import agent.AgentsCollection;
-import agent.Predator;
-import agent.Prey;
 import state.ReducedState;
-import state.State;
-
-import java.util.ArrayList;
 
 public class EpisodeGenerator {
     private AgentsCollection agents;
@@ -26,7 +21,7 @@ public class EpisodeGenerator {
     	Episode episode = new Episode(this.agents);
 
         ReducedState s = initialState;
-        ReducedState s_prime = initialState;
+        ReducedState s_prime;
 
         int steps = 0;
 //        System.out.println("step #"+steps + " " + s);
@@ -49,4 +44,31 @@ public class EpisodeGenerator {
         episode.refreshDiscounted(gamma);
 		return episode;
 	}
+
+    /**
+     * Runs numberOfTestRuns simulations and returns the average size (in terms of rounds per episode) for the agent
+     * collection and starting from the initialState.
+     * @param initialState The starting state for the simulation.
+     * @param numberOfTestRuns Count of runs to be tested on.
+     * @return The average size (in terms of rounds per episode) for the agent collection.
+     */
+    public double getAverageEpisodeSize(ReducedState initialState, int numberOfTestRuns) {
+        ReducedState s = initialState;
+        ReducedState s_prime;
+
+        int steps = 0;
+        for (int i = 0; i < numberOfTestRuns; i++) { // run numberOfTestRuns episodes
+
+            do {
+                steps++;
+                JointAction ja = new JointAction(s, this.agents);
+
+                s_prime = s.nextState(ja);  // s <- s.getSuccessor()
+
+                s = s_prime;
+            } while(!s_prime.isTerminal() && steps < 1000000);
+
+        }
+        return (double) steps / numberOfTestRuns;
+    }
 }

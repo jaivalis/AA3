@@ -11,7 +11,7 @@ public class Util {
     /* Task 1 */
 	public final static int DIM = 11;               /* Dimension of the grid world. */
 	public final static double PREYREWARD = 10.0;   /* Reward assigned to the Prey actor. */
-    public static final int EPISODE_COUNT = 1000;   /* Number of episodes used for learning. */
+    public static final int EPISODE_COUNT = 1001;   /* Number of episodes used for learning. */
     /* Task 2 */
 	public static double epsilon = 0.1;             /* Used in the Epsilon-Greedy implementation. */
     public static double tau = 4;             /* Softmax action selection temperature */
@@ -23,6 +23,8 @@ public class Util {
     public static double ALPHA = 0.1;
     public static double GAMMA = 0.5;
 
+    public static int PREY_WINS = 0;                /* used for outcome of simulation kinda ugly but deal with it :) */
+    public static int PREDATORS_WIN = 0;            /* used for outcome of simulation kinda ugly but deal with it :) */
 
     public ArrayList<State> getNeighbors(State s) {
         return null; // TODO
