@@ -17,16 +17,15 @@ public class Experiment2 {
 
         for (int predatorCount = 1; predatorCount < 5; predatorCount++) {
             for(int episodeCount = 50; episodeCount < Util.EPISODE_COUNT; episodeCount += 50) {
-
+                // 1. generate environment
                 AgentsCollection agents = Builder.experiment2Config(predatorCount, Util.INITIAL_Q_VALUE);
-
                 ReducedState simulationInitialState = new ReducedState(agents.getPredatorsCoordinates());
 
-                // 1. train
+                // 2. train
                 QLearning.run(agents, Util.ALPHA, Util.GAMMA, episodeCount);
                 System.out.println("%trained.");
 
-                // 2. simulate & output results
+                // 3. simulate & output results
                 Util.PREY_WINS = 0;
                 Util.PREDATORS_WIN = 0;
                 EpisodeGenerator simulator = new EpisodeGenerator(agents);

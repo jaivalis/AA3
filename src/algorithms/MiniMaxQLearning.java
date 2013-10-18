@@ -18,9 +18,9 @@ public class MiniMaxQLearning {
 
         double alpha = 1.0;
 
-//        for (int i = 0; i < episodeCount; i++) {
+        for (int i = 0; i < episodeCount; i++) {
 
-//            ReducedState s = new ReducedState();
+            ReducedState s = new ReducedState(agents.predators.size()); // Random state
 //
 //            while ( !s.isTerminal() ) {
 //                ReducedState prevS = s;
@@ -37,7 +37,7 @@ public class MiniMaxQLearning {
 //
 //                alpha *= decay;
 //
-//                s = s_prime;
-//            }
+//            s = s_prime;
+        }
     }
 }

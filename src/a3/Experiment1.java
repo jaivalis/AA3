@@ -20,7 +20,7 @@ public class Experiment1 {
             eg.generate(new ReducedState(agents.getPredatorsCoordinates()), 0.0);
             EpisodeGenerator simulator = new EpisodeGenerator(agents);
 
-            // 2. simulate and output results
+            // 2. simulate & output results
             Util.PREY_WINS = 0;
             Util.PREDATORS_WIN = 0;
             ReducedState simulationInitialState = new ReducedState(agents.getPredatorsCoordinates());
