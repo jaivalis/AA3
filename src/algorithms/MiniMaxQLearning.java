@@ -21,23 +21,22 @@ public class MiniMaxQLearning {
         for (int i = 0; i < episodeCount; i++) {
 
             ReducedState s = new ReducedState(agents.predators.size()); // Random state
-//
-//            while ( !s.isTerminal() ) {
-//                ReducedState prevS = s;
-//
-//                JointAction ja = new JointAction(s, agents);
-//
-//                ReducedState s_prime = prevS.nextState(ja);
-//
+
+            while ( !s.isTerminal() ) {
+                ReducedState prevS = s;
+                JointAction ja = new JointAction(s, agents);
+                ReducedState s_prime = prevS.nextState(ja);
+
 //                //TODO need Omicron class
 //                // if so not in Q:
 //                    //Q.put(sao, 1.0);
 //                // if so not in V:
 //                   //V.put(sao, 1.0);
-//
+
 //                alpha *= decay;
-//
-//            s = s_prime;
+
+                s = s_prime;
+            }
         }
     }
 }

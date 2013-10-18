@@ -1,6 +1,9 @@
 package episode;
 
 import action.JointAction;
+import agent.Agent;
+import agent.Predator;
+import agent.Prey;
 import state.State;
 
 public class EpisodeStep {
@@ -24,6 +27,14 @@ public class EpisodeStep {
 	public JointAction getA() { return a; }
     public double getPreyR() { return preyR; }
     public double getPredR() { return predR; }
+
+    public double getReward(Agent a) {
+        if (a instanceof Predator) {
+            return this.predR;
+        } if (a instanceof Prey) {
+            return this.preyR;
+        } return Double.NEGATIVE_INFINITY;
+    }
 
 	public void setDiscounted(double preyDiscounted, double predDiscounted) {
         this.preyDiscounted = preyDiscounted;

@@ -27,10 +27,6 @@ public abstract class Policy {
 		return ac.getRandomAction();
 	}
 
-	public double getActionProbability(State s, Action.action a) {
-		return this.stateActionMapping.get(s).getActionProbability(a);
-	}
-
 	/**
 	 * gets action with maximum probability of being chosen, given a state
 	 * @param s
@@ -87,19 +83,8 @@ public abstract class Policy {
             this.stateActionMapping.get(state).makeActionDeterministic(ac);
         }
     }
-//    public void printMaxActionsGrid() {
-//		State[][] states = new State[11][11];
-//		for(State s : this.stateActionMapping.keySet()){
-//			Coordinates c = s.getPreyCoordinates();
-//			states[c.getX()][c.getY()] = s;
-//		}
-//		for(int i = 0; i < 11; i++){
-//			for(int j = 0; j < 11; j++){
-//				action a = this.getArgMaxActionProbability(states[i][j]);
-//				System.out.print(a.getArrow() + "\t");
-//				// System.out.print(this.board[i][j].getStateValue() + "\t");
-//			}
-//			System.out.println();
-//		}
-//	}
+
+    public double getActionProbability(State s, Action.action a) {
+        return this.stateActionMapping.get(s).getActionProbability(a);
+    }
 }

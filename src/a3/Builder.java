@@ -3,10 +3,7 @@ package a3;
 import agent.AgentsCollection;
 import agent.Predator;
 import agent.Prey;
-import policy.Q;
-import policy.QEpsilonGreedyPolicy;
-import policy.RandomPredatorPolicy;
-import policy.RandomPreyPolicy;
+import policy.*;
 import util.Coordinates;
 
 public class Builder {
@@ -58,6 +55,7 @@ public class Builder {
 
     /**
      * Configures single Prey-single Predator.
+     * @param initialQ InitialQ to be used for Q value.
      * @return AgentCollection with 2 agents in it.
      */
     public static AgentsCollection experiment3Config(double initialQ) {
@@ -76,6 +74,30 @@ public class Builder {
         predP.setQ(predQ);
         Predator pp = new Predator(Builder.predatorCoordinates[0], predQ, predP);
         ac.predators.add(pp);
+        return ac;
+    }
+
+
+    /**
+     * Configures multiAgent WoLFPolicy
+     * @param predatorCount Number of predators to be created.
+     * @param initialQ InitialQ to be used for Q value.
+     * @return AgentCollection with 2 agents in it.
+     */
+    public static AgentsCollection experiment4Config(int predatorCount, double initialQ) {
+        AgentsCollection ac = new AgentsCollection();
+
+        // Create prey
+        WoLFPolicy preyP = new WoLFPolicy();
+        Prey p = new Prey(new Coordinates(5, 5), null, preyP);
+        ac.preys.add(p);
+
+        // Create predators
+        for (int i = 0; i < predatorCount; i++) {
+            WoLFPolicy predP = new WoLFPolicy();
+            Predator pp = new Predator(Builder.predatorCoordinates[i], null, predP);
+            ac.predators.add(pp);
+        }
         return ac;
     }
 }

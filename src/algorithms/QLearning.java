@@ -27,15 +27,15 @@ public class QLearning {
                 	action single_action = ja.actionsMap.get(agent);
                 	double q_sa = agent.getQ().get(s, single_action);
                     double max_a_q = agent.getQ().getMax(s_prime);
-                    
-                    // the reward r that is consequence of action a, in our case (prey/predator system) is always set 
+
+                    // the reward r that is consequence of action a, in our case (prey/predator system) is always set
                     // as the reward associated with the destination state
                     double r = s_prime.getReward(agent);
-                    
+
                     double discounted_max_a_q = gamma * max_a_q;
                     double newQ_sa = q_sa + alpha * (r + discounted_max_a_q - q_sa);
 
-                    agent.getQ().set(s, single_action, newQ_sa); // Q(s,a) = Q(s,a) + α[r + γmax_aQ() - Q(s,a)]	
+                    agent.getQ().set(s, single_action, newQ_sa); // Q(s,a) = Q(s,a) + α[r + γmax_aQ() - Q(s,a)]
                 }
                 s = s_prime;
             } while (!s.isTerminal()); // repeat until s is terminal

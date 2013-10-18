@@ -26,6 +26,8 @@ public class Util {
     public static int PREY_WINS = 0;                /* used for outcome of simulation kinda ugly but deal with it :) */
     public static int PREDATORS_WIN = 0;            /* used for outcome of simulation kinda ugly but deal with it :) */
 
+    public static int EPISODE_LIMIT = 10000;
+
     public ArrayList<State> getNeighbors(State s) {
         return null; // TODO
     }
