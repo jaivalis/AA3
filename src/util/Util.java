@@ -23,8 +23,8 @@ public class Util {
     public static double ALPHA = 0.1;
     public static double GAMMA = 0.5;
 
-    public static int PREY_WINS = 0;
-    public static int PREDATORS_WIN = 0;
+    public static int PREY_WINS = 0;                /* used for outcome of simulation kinda ugly but deal with it :) */
+    public static int PREDATORS_WIN = 0;            /* used for outcome of simulation kinda ugly but deal with it :) */
 
     public ArrayList<State> getNeighbors(State s) {
         return null; // TODO

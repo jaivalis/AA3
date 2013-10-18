@@ -11,15 +11,16 @@ import util.Util;
 public class Experiment1 {
 
     public static void main(String[] args) {
-        System.out.println("predatorCount,averageEpisodeSize,preyWins,predatorsWin");
+        System.out.println("predatorCount, averageEpisodeSize, preyWins, predatorsWin");
 
         for (int predatorCount = 1; predatorCount < 5; predatorCount++) {
+            // 1. generate environment
             AgentsCollection agents = Builder.experiment1Config(predatorCount);
             EpisodeGenerator eg = new EpisodeGenerator(agents);
             eg.generate(new ReducedState(agents.getPredatorsCoordinates()), 0.0);
             EpisodeGenerator simulator = new EpisodeGenerator(agents);
 
-            // simulate and output results
+            // 2. simulate and output results
             Util.PREY_WINS = 0;
             Util.PREDATORS_WIN = 0;
             ReducedState simulationInitialState = new ReducedState(agents.getPredatorsCoordinates());
