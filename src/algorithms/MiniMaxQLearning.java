@@ -60,7 +60,7 @@ public class MiniMaxQLearning {
 
     	Double v_s_prime = v.get(s_prime);
     	if(v_s_prime == null) {// lazy value filling
-    		v_s_prime = 0.0;
+    		v_s_prime = 1.0;
     		v.put(s_prime, v_s_prime);
     	}
     	

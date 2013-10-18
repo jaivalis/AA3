@@ -25,7 +25,7 @@ public class Experiment2_minimax_Q {
     	double gamma = 0.5;
     	double alpha = 0.1;
     	double decay = 0.5;
-        AgentsCollection agents = Builder.experiment2MiniMaxQConfig(Util.INITIAL_Q_VALUE);
+        AgentsCollection agents = Builder.experiment2MiniMaxQConfig(Util.INITIAL_MINIMAXQ_Q_VALUE);
     	MiniMaxQLearning.run(agents, gamma, decay, episodeCount);
 	}
 
