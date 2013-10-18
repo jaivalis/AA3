@@ -1,6 +1,7 @@
 package algorithms;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import policy.LocalEpsilonPolicy;
 import policy.Policy;
@@ -14,6 +15,7 @@ import agent.AgentsCollection;
 import agent.Predator;
 import agent.Prey;
 import state.ReducedState;
+import util.Util;
 
 public class MiniMaxQLearning {
 
@@ -39,7 +41,12 @@ public class MiniMaxQLearning {
                 ReducedState prevS = s;
 
                 JointAction ja = new JointAction(s, agents);
-
+                Random rand = new Random();
+                if( rand.nextDouble() < Util.MINIMAXQ_EXPLOR){
+                	ja.preyAction = action.getRandom();
+                	ja.predatorActions.put(0, action.getRandom() );
+                }
+                
                 ReducedState s_prime = prevS.nextState(ja);
                 double preyR = s_prime.getPreyReward();
                 double predatorR = s_prime.getPreyReward();
