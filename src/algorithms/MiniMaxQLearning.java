@@ -101,5 +101,18 @@ public class MiniMaxQLearning {
     	
     	// configuring policy for current state
     	pi.setEpsilonAction(s, argmax_epsilon, argmax_action);
+    	
+    	double v_min = Double.POSITIVE_INFINITY;
+    	for(action o_prime: action.values()) {
+    		double sum = 0.0;
+    		for(action a_prime : action.values()) {
+    			sum += pi.getActionProbability(s, a_prime) * q.get(s_prime, a_prime, o_prime);
+    		}
+    		if(sum < v_min){
+    			v_min = sum;
+    		}
+    	}
+    	
+    	v.put(s, v_min);
     }
 }
