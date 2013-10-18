@@ -18,27 +18,26 @@ public class MiniMaxQLearning {
 
         double alpha = 1.0;
 
-        for (int i = 0; i < episodeCount; i++) {
+//        for (int i = 0; i < episodeCount; i++) {
 
-            ReducedState s = new ReducedState();
-
-            while ( !s.isTerminal() ) {
-                ReducedState prevS = s;
-
-                JointAction ja = new JointAction(s, agents);
-
-                ReducedState s_prime = prevS.nextState(ja);
-
-                //TODO need Omicron class
-                // if so not in Q:
-                    //Q.put(sao, 1.0);
-                // if so not in V:
-                   //V.put(sao, 1.0);
-
-                alpha *= decay;
-
-                s = s_prime;
-            }
-        }
+//            ReducedState s = new ReducedState();
+//
+//            while ( !s.isTerminal() ) {
+//                ReducedState prevS = s;
+//
+//                JointAction ja = new JointAction(s, agents);
+//
+//                ReducedState s_prime = prevS.nextState(ja);
+//
+//                //TODO need Omicron class
+//                // if so not in Q:
+//                    //Q.put(sao, 1.0);
+//                // if so not in V:
+//                   //V.put(sao, 1.0);
+//
+//                alpha *= decay;
+//
+//                s = s_prime;
+//            }
     }
 }

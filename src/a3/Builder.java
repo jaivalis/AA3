@@ -10,7 +10,8 @@ import policy.RandomPreyPolicy;
 import util.Coordinates;
 
 public class Builder {
-    static Coordinates[] predatorCoordinates = {new Coordinates(0,0), new Coordinates(10,0), new Coordinates(0,10)};
+    static Coordinates[] predatorCoordinates = {new Coordinates(0,0), new Coordinates(10,0),
+                                                new Coordinates(0,10), new Coordinates(10,10)};
 
     /**
      * Configures a Prey and a given number of Predators to random policies.

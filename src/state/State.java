@@ -54,6 +54,13 @@ public abstract class State implements Cloneable {
                 return (this.predatorsCoordinates.get(0).equals(this.predatorsCoordinates.get(1)) ||
                         this.predatorsCoordinates.get(1).equals(this.predatorsCoordinates.get(2)) ||
                         this.predatorsCoordinates.get(0).equals(this.predatorsCoordinates.get(2)));
+            case 4:
+                return (this.predatorsCoordinates.get(0).equals(this.predatorsCoordinates.get(1)) ||
+                        this.predatorsCoordinates.get(0).equals(this.predatorsCoordinates.get(2)) ||
+                        this.predatorsCoordinates.get(0).equals(this.predatorsCoordinates.get(3)) ||
+                        this.predatorsCoordinates.get(1).equals(this.predatorsCoordinates.get(2)) ||
+                        this.predatorsCoordinates.get(1).equals(this.predatorsCoordinates.get(3)) ||
+                        this.predatorsCoordinates.get(2).equals(this.predatorsCoordinates.get(3))  );
             default:
                 Exception ex = new Exception();
                 ex.printStackTrace();
