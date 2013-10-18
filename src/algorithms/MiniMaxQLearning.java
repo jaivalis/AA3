@@ -11,6 +11,8 @@ import action.Action.action;
 import action.JointAction;
 import agent.Agent;
 import agent.AgentsCollection;
+import agent.Predator;
+import agent.Prey;
 import state.ReducedState;
 
 public class MiniMaxQLearning {
@@ -24,29 +26,26 @@ public class MiniMaxQLearning {
      */
     public static void run(AgentsCollection agents, double gamma, double decay, int episodeCount) {
         double[][] qMatrix = new double[5][5];
-
+        Prey prey = agents.preys.get(0);
+        Predator predator = agents.predators.get(0);
         double alpha = 1.0;
-
+        
         for (int i = 0; i < episodeCount; i++) {
-
+        	V preyV = new V();
+        	V predatorV = new V();
             ReducedState s = new ReducedState(agents.predators.size()); // Random state
-//
-//            while ( !s.isTerminal() ) {
-//                ReducedState prevS = s;
-//
-//                JointAction ja = new JointAction(s, agents);
-//
-//                ReducedState s_prime = prevS.nextState(ja);
-//
-//                //TODO need Omicron class
-//                // if so not in Q:
-//                    //Q.put(sao, 1.0);
-//                // if so not in V:
-//                   //V.put(sao, 1.0);
-//
-//                alpha *= decay;
-//
-//            s = s_prime;
+            while ( !s.isTerminal() ) {
+                ReducedState prevS = s;
+
+                JointAction ja = new JointAction(s, agents);
+
+                ReducedState s_prime = prevS.nextState(ja);
+                double preyR = s_prime.getPreyReward();
+                double predatorR = s_prime.getPreyReward();
+                MiniMaxQLearning.learn(prey, s, ja.preyAction, ja.predatorActions.get(predator), preyR, s_prime, preyV, alpha, gamma);
+                MiniMaxQLearning.learn(prey, s, ja.predatorActions.get(predator), ja.preyAction, predatorR, s_prime, predatorV, alpha, gamma);
+                alpha = alpha * decay;
+            }
         }
     }
     
