@@ -11,7 +11,7 @@ import util.Util;
 public class Experiment1 {
 
     public static void main(String[] args) {
-        System.out.println("predatorCount,averageEpisodeSize");
+        System.out.println("predatorCount,averageEpisodeSize,preyWins,predatorsWin");
 
         for (int predatorCount = 1; predatorCount < 5; predatorCount++) {
             AgentsCollection agents = Builder.experiment1Config(predatorCount);
@@ -20,9 +20,11 @@ public class Experiment1 {
             EpisodeGenerator simulator = new EpisodeGenerator(agents);
 
             // simulate and output results
+            Util.PREY_WINS = 0;
+            Util.PREDATORS_WIN = 0;
             ReducedState simulationInitialState = new ReducedState(agents.getPredatorsCoordinates());
             double averageEpisodeSize = simulator.getAverageEpisodeSize(simulationInitialState, Util.NUMBER_OF_TEST_RUNS);
-            System.out.println(predatorCount + ", " + averageEpisodeSize);
+            System.out.println(predatorCount + ", " + averageEpisodeSize+ ", " +Util.PREY_WINS+  ", " +Util.PREDATORS_WIN);
         }
     }
 }

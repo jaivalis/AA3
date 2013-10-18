@@ -23,6 +23,8 @@ public class Util {
     public static double ALPHA = 0.1;
     public static double GAMMA = 0.5;
 
+    public static int PREY_WINS = 0;
+    public static int PREDATORS_WIN = 0;
 
     public ArrayList<State> getNeighbors(State s) {
         return null; // TODO
