@@ -90,15 +90,11 @@ public abstract class State implements Cloneable {
 
     @Override
     public int hashCode() {
-    	String hashString = "1" + this.preyCoordinates.getX() + this.preyCoordinates.getY();
+    	String hashString = "1" + this.preyCoordinates.getX() +""+ this.preyCoordinates.getY();
         for (Coordinates predator : this.predatorsCoordinates) {
-            if (predator.getX() == 10 && predator.getY() == 10) {
-                hashString += "" + 100;
-            } else {
-                hashString += predator.getX() +""+ predator.getY();
-            }
+            hashString += predator.getX() +""+ predator.getY();
         }
-        return Integer.parseInt(hashString);
+        return hashString.hashCode();
     }
 
     public Coordinates getPreyCoordinates() { return this.preyCoordinates; }

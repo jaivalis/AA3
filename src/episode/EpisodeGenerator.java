@@ -46,4 +46,25 @@ public class EpisodeGenerator {
         episode.refreshDiscounted(gamma);
 		return episode;
 	}
+
+    public double getAverageEpisodeSize(ReducedState initialState, int numberOfTestRuns) {
+        Episode episode = new Episode(this.agents);
+
+        ReducedState s = initialState;
+        ReducedState s_prime = initialState;
+
+        int steps = 0;
+        for (int i = 0; i < numberOfTestRuns; i++) {
+            // run numberOfTestRuns episodes.
+            do {
+                steps++;
+                JointAction ja = new JointAction(s, this.agents);
+
+                s_prime = s.nextState(ja);  // s <- s.getSuccessor()
+
+                s = s_prime;
+            } while(!s_prime.isTerminal() && steps < 1000000);
+        }
+        return steps / numberOfTestRuns;
+    }
 }

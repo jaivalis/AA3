@@ -23,20 +23,20 @@ public class Experiment2 {
 
             ReducedState simulationInitialState = new ReducedState(agents.getPredatorsCoordinates());
 
-            EpisodeGenerator simulator = new EpisodeGenerator(agents);
-
         	// 1. train
             QLearning.run(agents, Util.ALPHA, Util.GAMMA, episodeCount);
             System.out.println("%trained.");
 
             // 2. simulate & output results
-            double averageRounds = 0.0; //algos.getSimulationAverageRounds(simulations);
-            for (int i = 0; i < Util.NUMBER_OF_TEST_RUNS; i++) {
-                Episode episode = simulator.generate(simulationInitialState, Util.GAMMA);
-                averageRounds += episode.size();
-            }
-            averageRounds /= Util.NUMBER_OF_TEST_RUNS;
-            System.out.println(episodeCount + ", " + averageRounds);
+            EpisodeGenerator simulator = new EpisodeGenerator(agents);
+            double averageEpisodeSize = simulator.getAverageEpisodeSize(simulationInitialState, Util.NUMBER_OF_TEST_RUNS);
+            System.out.println(episodeCount + ", " + averageEpisodeSize);
+//            double averageRounds = 0.0; //algos.getSimulationAverageRounds(simulations);
+////            for (int i = 0; i < Util.NUMBER_OF_TEST_RUNS; i++) {
+////                Episode episode = simulator.generate(simulationInitialState, Util.GAMMA);
+////                averageRounds += episode.size();
+////            }
+////            averageRounds /= Util.NUMBER_OF_TEST_RUNS;
         }
     }
 }
