@@ -63,7 +63,5 @@ public abstract class Agent {
         return this.policy.getActionProbability(s, a);
     }
 
-    public Policy getPolicy() { return this.policy; }
-
 	public Q getQ() { return this.q; }
 }
