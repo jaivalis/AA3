@@ -1,6 +1,5 @@
 package algorithms;
 
-import action.Action.action;
 import action.JointAction;
 import agent.AgentsCollection;
 import state.ReducedState;
@@ -9,9 +8,9 @@ public class MiniMaxQLearning {
 
     /**
      * In this case agents contains only 1 agent & 1 prey.
-     * @param agents
-     * @param gamma
-     * @param eta
+     * @param agents Should contain 1 Predator & 1 prey.
+     * @param gamma Decay factor.
+     * @param eta Learning rate.
      * @param decay
      */
     public static void run(AgentsCollection agents, double gamma, double eta, double decay, int episodeCount) {
@@ -25,9 +24,6 @@ public class MiniMaxQLearning {
 
             while ( !s.isTerminal() ) {
                 ReducedState prevS = s;
-
-                action predAction = agents.predators.get(0).getAction(prevS);
-                action preyAction = agents.preys.get(0).getAction(prevS);
 
                 JointAction ja = new JointAction(s, agents);
 

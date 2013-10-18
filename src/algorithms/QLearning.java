@@ -1,16 +1,10 @@
 package algorithms;
 
-import java.util.ArrayList;
-
-import policy.Q;
-import policy.QPolicy;
-import state.ReducedState;
-import state.State;
-import util.Util;
 import action.Action.action;
 import action.JointAction;
 import agent.Agent;
 import agent.AgentsCollection;
+import state.ReducedState;
 
 public class QLearning {
     /**
@@ -18,7 +12,7 @@ public class QLearning {
      * @param agents Container for the environment agents
      * @param alpha Learning rate.
      * @param gamma Decay factor.
-     * @return
+     * @param episodeCount Count of episodes for which the agents will learn.
      */
     public static void run(AgentsCollection agents, double alpha, double gamma, int episodeCount) {
         for (int i = 0; i < episodeCount; i++) {  // repeat for each episode
@@ -44,8 +38,6 @@ public class QLearning {
                     agent.getQ().set(s, single_action, newQ_sa); // Q(s,a) = Q(s,a) + α[r + γmax_aQ() - Q(s,a)]	
                 }
                 s = s_prime;
-                //System.out.println("a:"+a+" s':"+s_prime); //FIXME DEBUG
-                ja = null;
             } while (!s.isTerminal()); // repeat until s is terminal
         }
     }
