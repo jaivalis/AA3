@@ -66,10 +66,12 @@ public class GIGAWoLF {
             }
 
             // Simulate & output results.
+            Util.PREY_WINS = 0;
+            Util.PREDATORS_WIN = 0;
             EpisodeGenerator simulator = new EpisodeGenerator(agents);
             ReducedState simulationInitialState = new ReducedState(agents.getPredatorsCoordinates());
             double averageEpisodeSize = simulator.getAverageEpisodeSize(simulationInitialState, Util.NUMBER_OF_TEST_RUNS);
-            System.out.println(episodeCount + ", " + averageEpisodeSize);
+            System.out.println(episodeCount + ", " + averageEpisodeSize+", "+Util.PREY_WINS+", "+Util.PREDATORS_WIN);
         }
 
     }

@@ -14,7 +14,7 @@ public class Experiment4 {
         double eta = 0.1;
         double decay = 1.0;
 
-        for (int predatorCount = 1; predatorCount < 5; predatorCount++) {
+        for (int predatorCount = 4; predatorCount < 5; predatorCount++) {
             // 1. generate environment
             AgentsCollection agents = Builder.experiment4Config(predatorCount, Util.INITIAL_Q_VALUE);
             ReducedState simulationInitialState = new ReducedState(agents.getPredatorsCoordinates());
