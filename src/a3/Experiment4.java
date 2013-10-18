@@ -2,8 +2,6 @@ package a3;
 
 import agent.AgentsCollection;
 import algorithms.GIGAWoLF;
-import algorithms.MiniMaxQLearning;
-import episode.EpisodeGenerator;
 import state.ReducedState;
 import util.Util;
 

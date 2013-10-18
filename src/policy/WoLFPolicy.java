@@ -44,13 +44,17 @@ public class WoLFPolicy extends Policy {
         return super.getAction(s);
     }
 
-    public double getX(StateAction sa) { return this.X.get(sa); }
-    public double getZ(StateAction sa) { return this.Z.get(sa); }
+    public double getX(StateAction sa) {
+        return this.X.get(sa);
+    }
+    public double getZ(StateAction sa) {
+        return this.Z.get(sa);
+    }
 
     /**
      * Normalizes all the action probabilities
      */
-    public void normalizeΧ() {
+    public void normalizeX() {
         double maxX_t = Double.NEGATIVE_INFINITY;
         for (StateAction sa : this.X.keySet()) {
             maxX_t = Math.max(maxX_t, this.X.get(sa));
@@ -104,6 +108,9 @@ public class WoLFPolicy extends Policy {
         Action.action argmax_a = null;
         for(StateAction sa : sa_set) {
             Double val = this.X.get(sa);
+            if (val == null) {
+                return action.getRandom();
+            }
             if(val > max) {
                 max = val;
                 argmax_a = sa.getA();

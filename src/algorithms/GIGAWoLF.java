@@ -46,13 +46,13 @@ public class GIGAWoLF {
                             double x_t = wp.getX(sa);
                             double xNextHat = x_t + eta * reward;
 //                            wp.setX(sa, xNextHat);
-                            wp.normalizeΧ();
+                            wp.normalizeX();
 
                             // Step 2
                             double z_t = wp.getZ(sa);
                             double zNext = z_t + eta * reward / 3;
                             wp.setZ(sa, xNextHat);
-                            wp.normalizeΧ();
+                            wp.normalizeX();
 
                             // Step 3
                             double delta = Math.min(1, Math.abs(xNextHat - z_t) / Math.abs(zNext - xNextHat));
