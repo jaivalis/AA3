@@ -109,6 +109,7 @@ public class WoLFPolicy extends Policy {
                 argmax_a = sa.getA();
             }
         }
+
         if(argmax_a == null) {
             new Exception("value returned by getArgmaxA is null!!!").printStackTrace();
         }
