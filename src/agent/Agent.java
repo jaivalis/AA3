@@ -43,6 +43,10 @@ public abstract class Agent {
         this.policy = policy;
     }
 
+	public Policy getPolicy() {
+		return this.policy;
+	}
+	
 	/**
 	 * Returns the action the actor would take in state s.
 	 * @param s The state in question.

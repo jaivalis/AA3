@@ -188,4 +188,19 @@ public class Q {
 			System.out.println(s+" "+a+" "+df.format(action_value));
         }
 	}
+	
+	// methods that have to be extended,
+	// used in the subclass Q2 which allows not one but two
+	// actions to be associated to a Q-value (used in MiniMaxQ)
+	public double get(State s, action a, action o) {
+		new Exception("Q.get(s,a,o): use subclass Q2!").printStackTrace();
+		System.exit(0);
+		return 0;
+	}
+	
+	public void set(State s, action a, action o, double d) {
+		new Exception("Q.set(s,a,o,d): use subclass Q2!").printStackTrace();
+		System.exit(0);
+	}
+
 }

@@ -54,6 +54,26 @@ public class Builder {
     }
 
     /**
+     * @param predatorCount Number of predators to be created.
+     * @param initialQ InitialQ to be used for Q value.
+     * @return AgentCollection with QEpsilonGreedyPolicy Agents.
+     */
+    public static AgentsCollection experiment2MiniMaxQConfig(double initialQ) {
+        AgentsCollection ac = new AgentsCollection();
+
+        Q preyQ = new Q2(initialQ);
+        LocalEpsilonPolicy preyP = new LocalEpsilonPolicy();
+        Prey p = new Prey(new Coordinates(5, 5), preyQ, preyP);
+        ac.preys.add(p);
+
+        Q predQ = new Q2(initialQ);
+        LocalEpsilonPolicy predP = new LocalEpsilonPolicy();
+        Predator pp = new Predator(Builder.predatorCoordinates[0], predQ, predP);
+        ac.predators.add(pp);
+        return ac;
+    }
+
+    /**
      * Configures single Prey-single Predator.
      * @param initialQ InitialQ to be used for Q value.
      * @return AgentCollection with 2 agents in it.

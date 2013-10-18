@@ -3,6 +3,7 @@ package policy;
 import action.Action;
 import action.LearnedAction;
 import action.PossibleActions;
+import action.PossibleActionsConcrete;
 import agent.StateAction;
 import state.State;
 
@@ -24,6 +25,10 @@ public abstract class Policy {
 	 */
 	public Action.action getAction(State s) {
         PossibleActions ac = this.stateActionMapping.get(s);
+        if(ac == null) { // lazy instantiation
+        	ac = new PossibleActionsConcrete();
+        }
+        this.stateActionMapping.put(s,ac);
 		return ac.getRandomAction();
 	}
 
